@@ -100,8 +100,18 @@ TAP1 is now active on path A1
   A1     tap1                Off         Off     On*     On*     Off      Off         1500
 ```
 
+## z/OS TCPIP Definitions
+
+Review **ADCD.Z25A.VTAMLST(OSATRL2)** and note port names (used in later instructions):
+
 ![n02](images/network02.png)
 
+Update **ADCD.Z25A.TCPPARMS(ZPDTDEV2)** to access z/OS and Linux via a tunnel:
+- The IP address used to access z/OS from Linux (via tunnel) is 10.1.2.1
+- The IP address used to access Linux from z/OS (via tunnel) is 10.1.2.2
+- The IP address used by z/OS is 192.168.1.191
+
+![ipaddrs](images/ip_addresses.jpg)
 
 ![n03](images/network03.png)
 
