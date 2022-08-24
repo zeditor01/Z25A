@@ -1,6 +1,6 @@
 # DB2 zOS Setup
 
-Db2 CLP
+## Db2 CLP
 
 ```
 Database 2 entry:
@@ -41,4 +41,57 @@ Node 5 entry:
  Local database alias   = DALLASC
  
  ```
+ 
+ ## DDF REST
+ 
+DSNTIJRS
+ 
+RDEFINE DSNR DBCG.REST OWNER(IBMUSER) UACC(NONE)
+
+PERMIT DBCG.REST CLASS(DSNR) ID(FRED) ACCESS(READ)
+ 
+SETROPTS RACLIST(DSNR) REFRESH
+
+
+ 
+ DSNTIJR2
+ (versioning support)
+ 
+ SYSIBM.DSNSERVICE 
+ 
+ ```
+ curl --location --request GET 'http://192.168.1.191:5040/services' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic SUJNVVNFUjpTWVMx'
+
+{
+    "DB2Services": [
+        {
+            "serviceName": "DB2ServiceDiscover",
+            "serviceCollectionID": null,
+            "version": null,
+            "isDefaultVersion": true,
+            "serviceStatus": "started",
+            "serviceDescription": "DB2 service to list all available services.",
+            "serviceProvider": "db2service-1.0",
+            "serviceURL": "http://192.168.1.191:5040/services/DB2ServiceDiscover"
+        },
+        {
+            "serviceName": "DB2ServiceManager",
+            "serviceCollectionID": null,
+            "version": null,
+            "isDefaultVersion": true,
+            "serviceStatus": "started",
+            "serviceDescription": "DB2 service to create, drop, or alter a user defined service.",
+            "serviceProvider": "db2service-1.0",
+            "serviceURL": "http://192.168.1.191:5040/services/DB2ServiceManager"
+        }
+    ]
+}
+```
+
+
+ 
+ 
  
