@@ -22,6 +22,38 @@ Invoke a playbook on CentOS
 
 Cd /home/neale/Github/ansible-playbooks/ansible-playbooks-zos
 ansible_playbook zos_ping.yml 
+???
+
+copied Bens' ansible-playbooks-zos to /home/neale/ansible
+No luck....
+park for now
+
+```
+[neale@localhost ansible]$ pwd
+/home/neale/ansible
+[neale@localhost ansible]$ ls -al
+total 112
+drwxr-xr-x.  3 neale neale  4096 Aug 24 16:26 .
+drwx------. 21 neale neale  4096 Aug 24 16:25 ..
+-rw-r--r--.  1 neale neale  3423 Aug 24 16:26 base_auto_mount.yml
+-rw-r--r--.  1 neale neale  8670 Aug 24 16:26 base_COBOL.yml
+-rw-r--r--.  1 neale neale  1372 Aug 24 16:26 base_ispplib.yml
+-rw-r--r--.  1 neale neale  6644 Aug 24 16:26 base_jes.yml
+-rw-r--r--.  1 neale neale  3444 Aug 24 16:26 base_jobcard.yml
+-rw-r--r--.  1 neale neale 10273 Aug 24 16:26 base_parmlib.yml
+-rw-r--r--.  1 neale neale  3714 Aug 24 16:26 base_proclib.yml
+-rw-r--r--.  1 neale neale  4564 Aug 24 16:26 base_rmf.yml
+-rw-r--r--.  1 neale neale  7182 Aug 24 16:26 cics-egui-CSD.jcl
+-rw-r--r--.  1 neale neale  1300 Aug 24 16:26 cics-egui-EXMPCAT.txt
+-rw-r--r--.  1 neale neale   286 Aug 24 16:26 cics-egui-EXMPCONF.txt
+-rw-r--r--.  1 neale neale 11199 Aug 24 16:26 cics-egui.yml
+drwxr-xr-x.  3 neale neale    45 Aug 24 16:27 inventories
+-rw-r--r--.  1 neale neale    11 Aug 24 16:26 nealetest.yml
+-rw-r--r--.  1 neale neale  3345 Aug 24 16:26 smpe_zfs.yml
+-rw-r--r--.  1 neale neale  1420 Aug 24 16:26 vtp.yml
+-rw-r--r--.  1 neale neale  3920 Aug 24 16:26 z25a_housekeeping.yml
+-rw-r--r--.  1 neale neale  1758 Aug 24 16:26 zos_ping.yml
+```
 
 ## Ansible Version
 
