@@ -12,6 +12,8 @@ Prev Address Resvn 192.168.1.191 ( for z/OS )
 
    
 FIND_IO for "ibmsys1@localhost.localdomain" 
+None of the tunnel devices have IP addresses or subnets defined at this point.
+
 
 ```                                                                                                
          Interface         Current          MAC                IPv4              IPv6           
@@ -35,6 +37,9 @@ FIND_IO for "ibmsys1@localhost.localdomain"
   
 ## Edit devmapz25a.txt
 
+Ensure that the devicemap includes a general OSA and a tunnel OSA.
+We want to map the general OSA to Path F0 ( enp0s31f6 : the ethernet adapter on the host linux-intel system).
+We want to map the tunnel OSA to one of the tunnel adapters ( we'll pick tap1 on path A1 )
 ```
 [manager]  # tap define network adapter (OSA) for communication with Linux
 name awsosa 0024 --path=A1 --pathtype=OSD --tunnel_intf=y   # QDIO mode
@@ -49,6 +54,7 @@ device 405 osa osa
 device 406 osa osa
 ```
 
+We will use the ZPDT default subnet masks for tunnel adapters.
 The --tunnel_ip and --tunnel_mask defaults are as follows: 
 
 ![masks](images/masks.jpg)
