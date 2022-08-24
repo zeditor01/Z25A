@@ -1,8 +1,10 @@
 # Network Customisation
 
+## Home Network Diagram
 
 ![n01](images/network01.png)
 
+## cc
 
 ![n02](images/network02.png)
 
