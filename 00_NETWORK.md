@@ -115,6 +115,9 @@ Update **ADCD.Z25A.TCPPARMS(ZPDTDEV2)** to access z/OS and Linux via a tunnel:
 
 ![n03](images/network03.png)
 
+Edit member **ADCD.Z25A.TCPPARMS(PROF2)** and update the ZPDT External parm:
+- comment out adcd.Z25A.tcpparms(zpdtdev1)
+- Add entry for user.Z25A.tcpparms(zpdtdev2)
 
 ![n04](images/network04.png)
 
