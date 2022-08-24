@@ -1,5 +1,5 @@
 # Title
 
 Diagram: 
-![sys_design](sysdesign.jpg "Logo Title Text 1")
 
+![SD](images/sysdesign.jpg)
