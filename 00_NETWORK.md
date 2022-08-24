@@ -8,9 +8,6 @@ Prev Address Resvn 192.168.1.191 ( for z/OS )
 
 ![n01](images/network01.png)
 
-
-
-
 ## Find_IO
 
    
@@ -36,6 +33,26 @@ FIND_IO for "ibmsys1@localhost.localdomain"
   A7     tap7              DOWN             02:a7:a7:a7:a7:a7  *                 *
 ```  
   
+## Edit devmapz25a.txt
+
+```
+[manager]  # tap define network adapter (OSA) for communication with Linux
+name awsosa 0024 --path=A1 --pathtype=OSD --tunnel_intf=y   # QDIO mode
+device 400 osa osa --unitadd=0
+device 401 osa osa --unitadd=1
+device 402 osa osa --unitadd=2
+
+[manager]  # OSA define OSA for general network communication
+name awsosa 0022 --path=F0 --pathtype=OSD
+device 404 osa osa
+device 405 osa osa
+device 406 osa osa
+```
+
+The --tunnel_ip and --tunnel_mask defaults are as follows: 
+
+![masks](images/masks.jpg)
+
 
 ## cc
 
