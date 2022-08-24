@@ -135,15 +135,53 @@ Update ADCD.Z25A.TCPPARMS(GBLTDATA)  and change the following parameters:
 
 ![n06](images/network06.png)
 
+Stop and restart TCPIP
+```
+P TCPIP
+S TCPIP
+```
+
+Stop and restart the resolver:
+```
+P RESOLVER
+S RESOLVER,SUB=MSTR
+```
+
+Confirm within VTAM that the TRL is Active
+d net,trl
 
 ![n07](images/network07.png)
 
+SSH to z/OS
+
+```
+ssh ibmuser@192.168.1.191 
+```
 
 ![n08](images/network08.png)
 
+Verification
+
+
+```
+TSO HOMETEST
+```
 
 ![n08](images/network09.png)
 
 
 ![n10](images/network10.png)
 
+
+RHEL OSA performance 
+
+RHEL we experienced a drastic slowdown of OSA performance, This slowdown is immediately obvious and is due toRHEL attempting to offload various functions into the adapter, which is not acceptable to the current awsOSA implementation. The following commands, disable the RHEL offloading of IP functions:
+```
+sudo ethtool -K eno1 rx off
+sudo ethtool -K eno1 tso off
+sudo ethtool -K eno1 gso off
+sudo ethtool -K eno1 gro off
+sudo ethtool -K eno1 lro off
+sudo ethtool -k eno1
+sudo ethtool -S eno1
+```
