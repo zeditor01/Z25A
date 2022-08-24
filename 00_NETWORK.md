@@ -119,7 +119,7 @@ Edit member **ADCD.Z25A.TCPPARMS(PROF2)** and update the ZPDT External parm:
 - comment out adcd.Z25A.tcpparms(zpdtdev1)
 - Add entry for user.Z25A.tcpparms(zpdtdev2)
 
-![prof2](images/prof2.png)
+![prof2](images/prof2.jpg)
 
 Edit the Resolver configuration file **ADCD.Z25A.TCPPARMS(GBLRESOL)** to point to IPNodes files
 
