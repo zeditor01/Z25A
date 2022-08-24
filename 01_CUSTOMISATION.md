@@ -33,5 +33,15 @@ Set the clock to Sydney by editing **ADCD.Z25A.PARMLIB(CLOCK00)**
 
 ![clock00](images/clock00.jpg)
 
+## PARMLIB and PROCLIB Concatenations
+
+Parmlib concatenations for the DB IPL Parm defined in **SYS1.IPLPARM(LOADDB)**
+
+![parmlib_concat](images/parmlib_concat.jpg)
+
+Proclib Concatenation defined in **ADCD.Z25A.PARMLIB(MSTJCL00)**
+
+![proclib_concat](images/proclib_concat.jpg)
+
 
 
