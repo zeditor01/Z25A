@@ -15,15 +15,14 @@ Database 2 entry:
  Alternate server hostname            =
  Alternate server port number         =
  
- Node 4 entry:
+Node 5 entry:
 
- Node name                      = P52
+ Node name                      = P52DBCG
  Comment                        =
  Directory entry type           = LOCAL
  Protocol                       = TCPIP
- Hostname                       = 192.168.1.188
- Service name                   = 50000
- 
+ Hostname                       = 192.168.1.191
+ Service name                   = 5040
  DCS 2 entry:
 
  Local database name                = DALLASC
