@@ -119,7 +119,7 @@ Edit member **ADCD.Z25A.TCPPARMS(PROF2)** and update the ZPDT External parm:
 - comment out adcd.Z25A.tcpparms(zpdtdev1)
 - Add entry for user.Z25A.tcpparms(zpdtdev2)
 
-![n04](images/network04.png)
+![gblresol](images/gblresol.png)
 
 
 ![n05](images/network05.png)
