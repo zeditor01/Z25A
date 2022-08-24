@@ -119,11 +119,19 @@ Edit member **ADCD.Z25A.TCPPARMS(PROF2)** and update the ZPDT External parm:
 - comment out adcd.Z25A.tcpparms(zpdtdev1)
 - Add entry for user.Z25A.tcpparms(zpdtdev2)
 
+![prof2](images/prof2.png)
+
+Edit the Resolver configuration file **ADCD.Z25A.TCPPARMS(GBLRESOL)** to point to IPNodes files
+
 ![gblresol](images/gblresol.png)
 
+Update member ADCD.Z25A.TCPPARMS(ZPDTIPN2) with the tunnel IP address for RHEL and static IP address for z/OS:       
 
 ![n05](images/network05.png)
 
+Update ADCD.Z25A.TCPPARMS(GBLTDATA)  and change the following parameters:
+	- Update NSINTERADDR to  8.8.8.8 (google).
+	- Update RESOLVERTIMEOUT to 15 seconds.
 
 ![n06](images/network06.png)
 
