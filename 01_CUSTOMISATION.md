@@ -430,3 +430,9 @@ Option 0 - enable storage admin view
 exit ISMF
 
 Go back in to check out storage groups SGBASE, SGEXTEAV
+
+
+## JES2 CHKPT Datasets
+
+Is this still a necessary step in ADCD Z25A ?
+
