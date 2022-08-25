@@ -150,6 +150,7 @@ Copy **ADCD.JCL.LIB(ADDIDS)** to **IBMUSER.CNTL(ADDID)**
 LOGOFF                                                             
 ```
 
+Logon and chnage password to SYS1.
 
 Edit OMVS properties of AIDBADM
 
