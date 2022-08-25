@@ -229,6 +229,31 @@ export _ENCODE_FILE_EXISTING=UNTAGGED
 export _CEE_RUNOPTS="FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
 ```
 
+Create SQLDI Group and Add Members
+
+```
+//IBMUSERJ JOB  (NPA),'CREATE SQLDIGRP',CLASS=A,MSGCLASS=H,
+//             NOTIFY=&SYSUID,MSGLEVEL=(1,1),REGION=0M     
+//* JOB TO CREATE SQLDI GROUP                              
+//S1       EXEC PGM=IKJEFT01                               
+                                                           
+//SYSTSPRT DD SYSOUT=*                                     
+                                                           
+//SYSPRINT DD SYSOUT=*                                     
+                                                           
+//SYSTSIN  DD *                                            
+                                                           
+ADDGROUP SQLDIGRP OMVS(AUTOGID) OWNER(IBMUSER)             
+                                                           
+CONNECT (AIDBADM) GROUP(SQLDIGRP) OWNER(IBMUSER)           
+                                                           
+CONNECT (IBMUSER) GROUP(SQLDIGRP) OWNER(IBMUSER)           
+                                                           
+SETROPTS RACLIST(FACILITY) REFRESH                         
+                                                           
+/*                                                         
+```
+
 
 
 ## Mount a Large ZFS
