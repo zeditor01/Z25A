@@ -229,7 +229,7 @@ export _ENCODE_FILE_EXISTING=UNTAGGED
 export _CEE_RUNOPTS="FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
 ```
 
-Create SQLDI Group and Add Members
+Create SQLDI Group and Add Members **IBMUSER.CNTL(SQLDIGRP)**
 
 ```
 //IBMUSERJ JOB  (NPA),'CREATE SQLDIGRP',CLASS=A,MSGCLASS=H,
@@ -319,14 +319,6 @@ export PS1=' ${PWD} >'
 
 
 
-
-
-Step 1: Profile for aidbadm
-rm /u/aidbadm/.profile
-cp /u/aidbadm/backup_profile_custom /u/aidbadm/.profile
-
-Step 2: Add Group & Assign Members
-AIZ.AIDB0211.HOLFILES(FIXRACF)
 
 Step 3: RACF Keyring
 AIZ.AIDB0211.HOLFILES(RACFKR00)
