@@ -46,6 +46,23 @@ Proclib Concatenation defined in **ADCD.Z25A.PARMLIB(MSTJCL00)**
 ![proclib_concat](images/proclib_concat.jpg)
 
 
+
+## IBMUSER.CNTL
+
+ISPF 3.2 : View properties of **DSNC10.SDSNSAMP**
+
+![sdsnsamp](images/sdsnsamp.jpg)
+
+Allocate **'IBMUSER.CNTL'**
+
+![ibmuser_cntl](images/ibmuser_cntl.jpg)
+
+
+edit **ADCD.LIB.JCL(INITVOL)**
+create **'IBMUSER.CNTL(INITVOL)'**
+c99
+
+
 ## IPL and Shutdown Controls
 
 IPL startup procedures defined in **ADCD.Z25A.PARMLIB(VTAMDB)** and **ADCD.Z25A.PARMLIB(VTAMALL)** etc...
@@ -147,10 +164,7 @@ Esoteric Devices - mod 27 - allocate with **esopool.sh**
 alcckd /home/ibmsys1/Z25A001/WORK01 -d3390-27
 ```
 
-
-devmap
-device 0600 3390 3390 /run/media/neale/NUCZPDT/Z24C001/WORK01
-
+Edit the **devmapz25a.txt**
 
 ```
 # Neale Devmap for ZDT V13.0 created 20210303
@@ -249,13 +263,34 @@ device 0AAC 3390 3390 /home/ibmsys1/Z25A001/EAV00C
 device 0AAD 3390 3390 /home/ibmsys1/Z25A001/EAV00D
 
 device 0600 3390 3390 /home/ibmsys1/Z25A001/WORK01
+```
 
+Verify **devmapz25a.txt**
 
+```
+[ibmsys1@localhost Z25A001]$ awsckmap devmapz25a.txt
+AWSCHK200I Checking DEVMAP file 'devmapz25a.txt' ...
+AWSCHK204I Processed 92 records from DEVMAP /home/ibmsys1/Z25A001/devmapz25a.txt
+AWSCHK208I Check complete, 0 errors, 0 warnings detected.
 ```
 
 
-IPL
+IPL and Initialise Volumes by editing and submitting **IBMUSER.CNTL(INITVOL)** several times
 
-Edit ADCD.Z24C.PARMLIB(VATLSTDB)
-Edit ADCD.Z24C.PARMLIB(VATLST00)
+![initvol](images/initvol.jpg)
+
+from the master console reply **r NN,U**
+
+![initvol_confirm](images/initvol_confirm.jpg)
+
+
+Add the Esoteric Volume to the configuration
+
+Edit **ADCD.Z25A.PARMLIB(VATLSTDB)**
+Edit **ADCD.Z25A.PARMLIB(VATLST00)**
+
+Add Line ```WORK*,0,0,3390     ,Y ```
+
+![vatlstxx](images/vatlstxx.jpg)
+
 
