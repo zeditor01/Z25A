@@ -344,8 +344,7 @@ Master Console invocation
 * F AXR,EAVOFF
   
   
-Convert them to SMS ( Wasn't necessary ??? )
-
+Convert them to SMS  
 ```
 F AXR,EAVON
 	
@@ -358,6 +357,10 @@ F AXR,EAVON
  SMS                                                  
 /*
 ```  
+
+Check the volumes are all available in ISMF
+
+![exteavsg](images/exteavsg.jpg)
   
 Create a BIGZFS spanning all 6 volumes
 
