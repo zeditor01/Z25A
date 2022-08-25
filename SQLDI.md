@@ -378,18 +378,24 @@ RACDCERT LIST(LABEL('WMLZCERT_WMLZID')) ID(AIDBADM)
 ```
 
 Step 4: Create the Db2 artefacts
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)
 
-Step 5: Install SQLDI
-mkdir /u/aidb0020/aie
-/u/aidb0020/aie >pax -r -ppx -f /u/aidb0020/HOL/aie_4-20-22.pax
-/u/aidb0020 >pax -r -ppx -f /u/aidb0020/HOL/sql-data-insights.pax
+Step 5: Install SQLDI Instance
+
+
 sqldi.sh create
+
 Enter the keyring name: WMLZRING
+
 Enter the keyring owner: AIDBADM
+
 Enter certificate label: WMLZCert_WMLZID
+
 
 
 Test:
