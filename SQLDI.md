@@ -57,20 +57,26 @@ mount -f USSFILES.ZFS /u/ibmuser/ussfiles
 ## SQLDI Beta211 Code
 
 C:\Users\neale\code
-
+```
 -a----        15/07/2022  12:50 PM           7360 AIDB0211.IMAGE.AIDBDBRM.SEQ
 -a----        15/07/2022  12:50 PM         325280 AIDB0211.IMAGE.AIDBLOAD.SEQ
 -a----        06/07/2022   2:10 PM        3773360 AIDBSAMP.SEQ
 -a----        15/06/2022  11:17 AM       38158848 aie_4-20-22.pax
 -a----        15/06/2022  11:17 AM      319689216 sql-data-insights.pax
+```
 
+FTP the Pax Files
 
+```
 ftp 192.168.1.191
 IBMUSER/SYS1
 bin
 put aie_4-20-22.pax /u/ibmuser/ussfiles/aie_4-20-22.pax
 put sql-data-insights.pax /u/ibmuser/ussfiles/sql-data-insights.pax
+```
 
+ftp the PDS Images from Matto
+```
 ftp 192.168.1.191
 IBMUSER/SYS1
 Bin 
@@ -78,21 +84,28 @@ QUOTE SITE LRECL=80 RECFM=FB CYL PRI=5 SEC=1
 put AIDB0211.IMAGE.AIDBDBRM.SEQ 'AIDB0211.IMAGE.AIDBDBRM.SEQ'
 put AIDB0211.IMAGE.AIDBLOAD.SEQ 'AIDB0211.IMAGE.AIDBLOAD.SEQ'
 put AIDBSAMP.SEQ 'AIDBSAMP.SEQ'
+```
 
+TSO Option 6 - Receive the PDS Images
 
+```
 RECEIVE INDA('AIDB0211.IMAGE.AIDBDBRM.SEQ')
 DA('AIZ.AIDB0021.INSTALL.AIDBDBRM')
+```
 
 ![aidbdbrm](images/aidbdbrm.jpg)
 
+```
 RECEIVE INDA('AIDB0211.IMAGE.AIDBLOAD.SEQ')
 DA('AIZ.AIDB0021.INSTALL.AIDBLOAD')
-
+```
 
 ![aidbload](images/aidbload.jpg)
 
+```
 RECEIVE INDA('AIDBSAMP.SEQ')
 DA('AIZ.AIDB0021.INSTALL.AIDBSAMP')
+```
 
 ![aidbsamp](images/aidbsamp.jpg)
 
