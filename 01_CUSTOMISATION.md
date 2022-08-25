@@ -360,7 +360,7 @@ F AXR,EAVON
 
 Check the volumes are all available in ISMF
 
-![exteavsg](images/exteavsg.jpg)
+![eavextsg](images/eavextsg.jpg)
   
 Create a BIGZFS spanning all 6 volumes
 
