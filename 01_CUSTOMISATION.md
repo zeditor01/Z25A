@@ -367,15 +367,15 @@ Create a BIGZFS spanning all 6 volumes
 //SYSUDUMP  DD     SYSOUT=H                          
 //AMSDUMP   DD     SYSOUT=H                          
 //SYSIN     DD     *                                 
-     DELETE 'SMPE.ZFS'                               
-     DEFINE CLUSTER (NAME(SMPE.ZFS) -                
+     DELETE 'SMPEWORK.ZFS'                               
+     DEFINE CLUSTER (NAME(SMPEWORK.ZFS) -                
             VOLUMES (EAV00A EAV00B EAV00C -          
                      EAV00D EAV00E EAV00F) -         
             DATACLASS(DCEXTEAV) -                    
             LINEAR CYL(3336 3336) SHAREOPTIONS(3))   
 /*                                                   
 //FORMAT    EXEC  PGM=IOEAGFMT,REGION=0M,            
-// PARM=('-aggregate SMPE.ZFS -compat')              
+// PARM=('-aggregate SMPEWORK.ZFS -compat')              
 //SYSPRINT  DD     SYSOUT=H                          
 //STDOUT    DD     SYSOUT=H                          
 //STDERR    DD     SYSOUT=H                          
@@ -391,7 +391,7 @@ from putty
 ```
 cd /u/ibmuser
 mkdir smpework
-mount -f DVM1.ZFS /u/ibmuser/smpework
+mount -f SMPEWORK.ZFS /u/ibmuser/smpework
 ```
 
 
