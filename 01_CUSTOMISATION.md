@@ -259,8 +259,8 @@ device 0AA8 3390 3390 /home/ibmsys1/Z25A001/EAV00A
 device 0AA9 3390 3390 /home/ibmsys1/Z25A001/EAV00B
 device 0AAA 3390 3390 /home/ibmsys1/Z25A001/EAV00C
 device 0AAB 3390 3390 /home/ibmsys1/Z25A001/EAV00D
-device 0AAC 3390 3390 /home/ibmsys1/Z25A001/EAV00C
-device 0AAD 3390 3390 /home/ibmsys1/Z25A001/EAV00D
+device 0AAC 3390 3390 /home/ibmsys1/Z25A001/EAV00E
+device 0AAD 3390 3390 /home/ibmsys1/Z25A001/EAV00F
 
 device 0600 3390 3390 /home/ibmsys1/Z25A001/WORK01
 ```
@@ -291,6 +291,139 @@ Edit **ADCD.Z25A.PARMLIB(VATLST00)**
 
 Add Line ```WORK*,0,0,3390     ,Y ```
 
-![vatlstxx](images/vatlstxx.jpg)
+![VATLSTXX](images/VATLSTXX.jpg)
 
 
+## Convert Volumes to SMS and enable/disable creation  of new files.
+
+Enable the for read-write only for the duration of SMPE installs
+
+
+Don't want to accidentally put other shit on these volumes.
+
+```
+/* REXX */
+cmd.1 = "v sms,volume(EAV00A),enable"
+cmd.2 = "v sms,volume(EAV00B),enable"
+cmd.3 = "v sms,volume(EAV00C),enable"
+cmd.4 = "v sms,volume(EAV00D),enable"
+cmd.5 = "v sms,volume(EAV00E),enable"
+cmd.6 = "v sms,volume(EAV00F),enable"
+cmd.0 = 6
+do i = 1 to cmd.0
+  x = AXRCMD(cmd.i,var.,5)
+  do j = 1 to var.0
+      x = AXRWTO(var.j)
+  end
+end
+```
+
+Save above as SYS1.SAXREXEC(EAVON).
+
+```
+/* REXX */
+cmd.1 = "v sms,volume(EAV00A),disable,new"
+cmd.2 = "v sms,volume(EAV00B),disable,new"
+cmd.3 = "v sms,volume(EAV00C),disable,new"
+cmd.4 = "v sms,volume(EAV00D),disable,new"
+cmd.5 = "v sms,volume(EAV00E),disable,new"
+cmd.6 = "v sms,volume(EAV00F),disable,new"
+cmd.0 = 6
+do i = 1 to cmd.0
+  x = AXRCMD(cmd.i,var.,5)
+  do j = 1 to var.0
+      x = AXRWTO(var.j)
+  end
+end
+```
+
+Save above as SYS1.SAXREXEC(EAVOFF)
+
+Master Console invocation
+* F AXR,EAVON
+* F AXR,EAVOFF
+  
+  
+Convert them to SMS ( Wasn't necessary ??? )
+
+```
+F AXR,EAVON
+	
+//CONVERT   EXEC   PGM=ADRDSSU,REGION=0M              
+//SYSPRINT  DD     SYSOUT=H                           
+//INVOL     DD     VOL=SER=EAV00F,UNIT=3390,DISP=SHR  
+//SYSIN     DD *                                      
+ CONVERTV -                                           
+ DDNAME(INVOL) -                                      
+ SMS                                                  
+/*
+```  
+  
+Create a BIGZFS spanning all 6 volumes
+
+```
+//DEFINE    EXEC   PGM=IDCAMS                        
+//SYSPRINT  DD     SYSOUT=H                          
+//SYSUDUMP  DD     SYSOUT=H                          
+//AMSDUMP   DD     SYSOUT=H                          
+//SYSIN     DD     *                                 
+     DELETE 'SMPEWORK.ZFS'                               
+     DEFINE CLUSTER (NAME(SMPEWORK.ZFS) -                
+            VOLUMES (EAV00A EAV00B EAV00C -          
+                     EAV00D EAV00E EAV00F) -         
+            DATACLASS(DCEXTEAV) -                    
+            LINEAR CYL(3336 3336) SHAREOPTIONS(3))   
+/*                                                   
+//FORMAT    EXEC  PGM=IOEAGFMT,REGION=0M,            
+// PARM=('-aggregate SMPEWORK.ZFS -compat')              
+//SYSPRINT  DD     SYSOUT=H                          
+//STDOUT    DD     SYSOUT=H                          
+//STDERR    DD     SYSOUT=H                          
+//SYSUDUMP  DD     SYSOUT=H                          
+//CEEDUMP   DD     SYSOUT=H                          
+//*
+```	
+
+
+Mount the Aggregate on /u/ibmuser/smpework
+from putty
+
+```
+cd /u/ibmuser
+mkdir smpework
+mount -f SMPEWORK.ZFS /u/ibmuser/smpework
+```
+
+
+For transmission of ShopZ downloads
+
+Turn on Fast TCP on P52
+
+```
+su -
+/root/fasttcp.sh
+```
+
+FTP from Windows ( command line )
+
+```
+from Windows … navigate to 
+S:\ZSHOP\20210921_DVM\7312760424_000010_PROD
+
+pscp –r * ibmuser@192.168.1.191:/u/ibmuser/STP59536
+```
+  
+  
+## Define ALIASes
+
+Keeps the master catalogs small
+
+DEFINE ALIAS (NAME('NEALE') RELATE('USERCAT.Z24C.USER'))  
+
+## ISMF - SMS
+
+M.2
+Option 0 - enable storage admin view
+exit ISMF
+
+Go back in to check out storage groups SGBASE, SGEXTEAV
