@@ -344,8 +344,7 @@ Master Console invocation
 * F AXR,EAVOFF
   
   
-Convert them to SMS ( Wasn't necessary ??? )
-
+Convert them to SMS  
 ```
 F AXR,EAVON
 	
@@ -358,6 +357,10 @@ F AXR,EAVON
  SMS                                                  
 /*
 ```  
+
+Check the volumes are all available in ISMF
+
+![eavextsg](images/eavextsg.jpg)
   
 Create a BIGZFS spanning all 6 volumes
 
@@ -427,3 +430,9 @@ Option 0 - enable storage admin view
 exit ISMF
 
 Go back in to check out storage groups SGBASE, SGEXTEAV
+
+
+## JES2 CHKPT Datasets
+
+Is this still a necessary step in ADCD Z25A ?
+
