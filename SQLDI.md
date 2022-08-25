@@ -150,6 +150,7 @@ Copy **ADCD.JCL.LIB(ADDIDS)** to **IBMUSER.CNTL(ADDID)**
 LOGOFF                                                             
 ```
 
+Logon and chnage password to SYS1.
 
 Edit OMVS properties of AIDBADM
 
@@ -229,7 +230,7 @@ export _ENCODE_FILE_EXISTING=UNTAGGED
 export _CEE_RUNOPTS="FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"
 ```
 
-Create SQLDI Group and Add Members
+Create SQLDI Group and Add Members **IBMUSER.CNTL(SQLDIGRP)**
 
 ```
 //IBMUSERJ JOB  (NPA),'CREATE SQLDIGRP',CLASS=A,MSGCLASS=H,
@@ -255,96 +256,146 @@ SETROPTS RACLIST(FACILITY) REFRESH
 ```
 
 
-
 ## Mount a Large ZFS
 
 Check mounted filesystems with command d omvs,f**
 
+![zfs_active](images/zfs_active.jpg)
+
 temporarily use SMPEWORK.ZFS mounted at /u/ibmuser/smpework 
 
 
-create profile_original
-create profile_sqldi 
+## Install the AI libaries and SQLDI
 
-cp profile_sqldi .profile
+mkdir /u/ibmuser/smpework/aie
+
+cd/u/ibmuser/smpework/aie
+
+pax -r -ppx -f /u/ibmuser/ussfiles/aie_4-20-22.pax
 
 ```
-echo "Setup for SQL Data Insights Beta 2.11"        
-                                                   
-export JAVA_HOME=/usr/lpp/java/J8.0_64             
-export SQLDI_INSTALL_DIR=/u/ibmuser/smpework               
-export ZADE_INSTALL_DIR=/u/ibmuser/smpework/aie/zade       
-export ZAIE_INSTALL_DIR=/u/ibmuser/smpework/aie            
-export BLAS_INSTALL_DIR=/u/ibmuser/smpework/aie/blas       
-export SPARK_HOME=$SQLDI_INSTALL_DIR/spark24x      
-                                                   
-#PATH                                              
-PATH=/bin:$PATH                                    
-PATH=$SQLDI_INSTALL_DIR/sql-data-insights/bin:$PATH
-PATH=$SQLDI_INSTALL_DIR/tools/bin:$PATH            
-PATH=$ZADE_INSTALL_DIR/bin:$PATH                   
-PATH=$PATH:$JAVA_HOME/bin                          
-export PATH=$PATH                                  
-                                                   
-#LIBPATH                                           
-LIBPATH=/lib:/usr/lib                              
-LIBPATH=$LIBPATH:$JAVA_HOME/bin/classic            
-LIBPATH=$LIBPATH:$JAVA_HOME/bin/j9vm               
-LIBPATH=$LIBPATH:$JAVA_HOME/lib/s390x              
-LIBPATH=$LIBPATH:$SPARK_HOME/lib                   
-LIBPATH=$BLAS_INSTALL_DIR/lib:$LIBPATH             
-LIBPATH=$ZAIE_INSTALL_DIR/zade/lib:$LIBPATH        
-LIBPATH=$ZAIE_INSTALL_DIR/zdnn/lib:$LIBPATH        
-LIBPATH=$ZAIE_INSTALL_DIR/zaio/lib:$LIBPATH        
-export LIBPATH=$LIBPATH                                                   
-                                                        
-# Other system environment variables                       
-export IBM_JAVA_OPTIONS="-Dfile.encoding=UTF-8"            
-export _BPXK_AUTOCVT=ON                                    
-export _BPX_SHAREAS=NO                                     
-export _ENCODE_FILE_NEW=ISO8859-1                          
-export _ENCODE_FILE_EXISTING=UNTAGGED                      
-export _CEE_RUNOPTS="FILETAG(AUTOCVT,AUTOTAG) POSIX(ON)"   
-                                                           
-# Additional environment variables and aliases             
-export TERM=xterm                                          
-alias vi1='vi -W filecodeset=utf-8'                        
-alias vi2='vi -W filecodeset=iso8859-1'                    
-alias ll='ls -ltcpa'                                       
-export PS1=' ${PWD} >'                                                                             
+AIDBADM:/u/ibmuser/smpework/aie: >pax -r -ppx -f /u/ibmuser/ussfiles/aie_4-20-22.pax
+AIDBADM:/u/ibmuser/smpework/aie: >ls -al
+total 112
+drwxr-xr-x   7 AIDBADM  SYS1        8192 Mar 24 09:30 .
+drwxrwxrwx   3 OMVSKERN SYS1        8192 Aug 25 03:36 ..
+drwxr-xr-x   4 AIDBADM  SYS1        8192 Mar 24 13:28 blas
+drwxr-xr-x   2 AIDBADM  SYS1        8192 Apr 20 13:37 mvs
+drwxr-xr-x   4 AIDBADM  SYS1        8192 Apr 20 13:38 zade
+drwxr-xr-x   4 AIDBADM  SYS1        8192 Apr 20 13:34 zaio
+drwxr-xr-x   4 AIDBADM  SYS1        8192 Mar 24 09:27 zdnn
 ```
 
 
+cd /u/ibmuser/smpework
 
+pax -r -ppx -f /u/ibmuser/ussfiles/sql-data-insights.pax
 
-
-
-
-
-Step 1: Profile for aidbadm
-rm /u/aidbadm/.profile
-cp /u/aidbadm/backup_profile_custom /u/aidbadm/.profile
-
-Step 2: Add Group & Assign Members
-AIZ.AIDB0211.HOLFILES(FIXRACF)
+```
+AIDBADM:/u/ibmuser/smpework: >pax -r -ppx -f /u/ibmuser/ussfiles/sql-data-insights.pax
+AIDBADM:/u/ibmuser/smpework: >ls -al
+total 112
+drwxrwxrwx   7 OMVSKERN SYS1        8192 Aug 25 03:39 .
+drwxr-xr-x  14 OMVSKERN SYS1        8192 Aug 25 03:14 ..
+drwxr-xr-x   7 AIDBADM  SYS1        8192 Mar 24 09:30 aie
+drwxr-xr-x  12 AIDBADM  SYS1        8192 Apr 14 01:52 spark24x
+drwxr-xr-x   6 AIDBADM  SYS1        8192 Apr 14 01:52 sql-data-insights
+drwxr-xr-x   3 AIDBADM  SYS1        8192 Apr 11 01:15 templates
+drwxr-xr-x   3 AIDBADM  SYS1        8192 Apr 11 01:15 tools
+```
 
 Step 3: RACF Keyring
-AIZ.AIDB0211.HOLFILES(RACFKR00)
-AIZ.AIDB0211.HOLFILES(RACFVIEW)
+Run **IBMUSER.CNTL(RACFKR00)**
+
+```
+//S1       EXEC PGM=IKJEFT01                                      
+//SYSTSPRT DD SYSOUT=*                                            
+//SYSPRINT DD SYSOUT=*                                            
+//SYSTSIN  DD *                                                   
+                                                                  
+RACDCERT ADDRING(WMLZRING) ID(AIDBADM)                            
+                                                                  
+RACDCERT GENCERT CERTAUTH +                                       
+SUBJECTSDN( +                                                     
+      CN('STLAB41') +                                             
+      C('US') +                                                   
+      SP('CA') +                                                  
+      L('SAN JOSE') +                                             
+      O('IBM') +                                                  
+      OU('WMLZ') +                                                
+) +                                                               
+ALTNAME( +                                                        
+      EMAIL('NMARION@US.IBM.COM') +                               
+) +                                                               
+WITHLABEL('WMLZCACERT') +                                         
+NOTAFTER(DATE(2024/01/01))                                        
+                                                                  
+RACDCERT GENCERT ID(AIDBADM) +                                    
+SUBJECTSDN( +                                                     
+      CN('STLAB41') +                                             
+      C('US') +                                                   
+      SP('CA') +                                                  
+      L('SAN JOSE') +                                             
+      O('IBM') +                                                     
+      OU('WMLZ') +                                                   
+) +                                                                  
+ALTNAME( +                                                           
+      EMAIL('NMARION@US.IBM.COM') +                                  
+) +                                                                  
+WITHLABEL('WMLZCERT_WMLZID') +                                       
+SIGNWITH(CERTAUTH LABEL('WMLZCACERT')) +                             
+NOTAFTER(DATE(2024/01/01))                                           
+                                                                     
+RACDCERT ID(AIDBADM) CONNECT(CERTAUTH LABEL('WMLZCACERT') +          
+RING(WMLZRING))                                                      
+                                                                     
+RACDCERT ID(AIDBADM) CONNECT(ID(AIDBADM) LABEL('WMLZCERT_WMLZID') +  
+RING(WMLZRING) USAGE(PERSONAL))                                      
+                                                                     
+PERMIT IRR.DIGTCERT.LISTRING CLASS(FACILITY) ID(AIDBADM) ACCESS(READ)
+PERMIT IRR.DIGTCERT.LISTRING CLASS(FACILITY) ID(USER1) ACCESS(READ)  
+                                                                     
+SETROPTS RACLIST(FACILITY) REFRESH                                   
+                                                                     
+/*                                                                         
+```
+
+Run **IBMUSER.CNTL(RACFVIEW)**
+
+```
+//S1       EXEC PGM=IKJEFT01                        
+//SYSTSPRT DD SYSOUT=*                              
+//SYSPRINT DD SYSOUT=*                              
+//SYSTSIN  DD *                                     
+                                                    
+RACDCERT LISTRING(WMLZRING) ID(AIDBADM)             
+                                                    
+RACDCERT CERTAUTH LIST(LABEL('WMLZCACERT'))         
+                                                    
+RACDCERT LIST(LABEL('WMLZCERT_WMLZID')) ID(AIDBADM) 
+                                                    
+/*                                                  
+```
 
 Step 4: Create the Db2 artefacts
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)
+
 AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)
 
-Step 5: Install SQLDI
-mkdir /u/aidb0020/aie
-/u/aidb0020/aie >pax -r -ppx -f /u/aidb0020/HOL/aie_4-20-22.pax
-/u/aidb0020 >pax -r -ppx -f /u/aidb0020/HOL/sql-data-insights.pax
+Step 5: Install SQLDI Instance
+
+
 sqldi.sh create
+
 Enter the keyring name: WMLZRING
+
 Enter the keyring owner: AIDBADM
+
 Enter certificate label: WMLZCert_WMLZID
+
 
 
 Test:
