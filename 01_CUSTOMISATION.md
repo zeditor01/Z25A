@@ -291,6 +291,6 @@ Edit **ADCD.Z25A.PARMLIB(VATLST00)**
 
 Add Line ```WORK*,0,0,3390     ,Y ```
 
-![vatlstxx](images/vatlstxx.jpg)
+![VATLSTXX](images/VATLSTXX.jpg)
 
 
