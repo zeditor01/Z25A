@@ -432,7 +432,7 @@ example below
 
 Create with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)**
 
-![SQLDI_PKG](images/SQLDI_PKG.jpg)
+![SQLDI_PKG](images/SQDLI_PKG.jpg)
 
 
 
