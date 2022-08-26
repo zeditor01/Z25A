@@ -519,6 +519,8 @@ Query
 
 ## Debugging
 
+not sure if AIDBLOAD needed to be APF Authorised ?
+
 Testing by Training Q.CIMATE_USA
 600 rows * 6 columns
 
