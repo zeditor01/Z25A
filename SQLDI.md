@@ -379,11 +379,63 @@ RACDCERT LIST(LABEL('WMLZCERT_WMLZID')) ID(AIDBADM)
 
 Step 4: Create the Db2 artefacts
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)
+For all jobs
+* DBCG
+* DSNC10.SDSNLOAD
+* DSNC10.DBCG.RUNLIB.LOAD
+* DSNC10.DBCG.SDSNEXIT
+* DSNTEP12
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)
+Create Pseudo Catalog with **AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)**
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)
+![SQLDI_PC](images/SQLDI_PC.jpg)
+
+Create UDFs with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)**
+
+Note that
+1. The LOAD modules need to be copied to a DB2 LOAD Library ( DSNC10.SDSNLOAD ? )
+2. The The WM Environment AIDBWLMENV needs to be defined , and PROCs added to PROCLIB
+
+example below
+
+```
+//SYSIN    DD *                                          
+                                                         
+  CREATE FUNCTION SYSFUN.AI_SIMILARITY(                  
+                    MLCOL1 VARCHAR(128),                 
+                    VALUE1 VARCHAR(1868),                
+                    MLCOL2 VARCHAR(128),                 
+                    VALUE2 VARCHAR(1868),                
+                    SCHEMA VARCHAR(128),                 
+                    TABNAM VARCHAR(128))                 
+    RETURNS DOUBLE                                       
+    EXTERNAL NAME SIMIUDF                                
+    LANGUAGE C                                           
+    PARAMETER STYLE DB2SQL                               
+    PARAMETER CCSID UNICODE                              
+    PARAMETER VARCHAR NULTERM                            
+    PROGRAM TYPE SUB                                     
+    SCRATCHPAD 20480                                     
+    NO FINAL CALL                                        
+    WLM ENVIRONMENT AIDBWLMENV                           
+    SECURITY DB2                                         
+    READS SQL DATA                                       
+    COLLID SIMIUDF                                       
+    ALLOW PARALLEL                                       
+    NOT DETERMINISTIC                                    
+    RETURNS NULL ON NULL INPUT                           
+    STAY RESIDENT YES                                    
+    NO EXTERNAL ACTION                                   
+    RUN OPTIONS 'POSIX(ON),XPLINK(ON),ENVAR("AISTRC=00")'
+  ;                                                      
+```
+
+Create with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)**
+
+![SQLDI_PC](images/SQLDI_PC.jpg)
+
+
+
 
 Step 5: Install SQLDI Instance
 
