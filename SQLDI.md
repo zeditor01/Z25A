@@ -379,13 +379,89 @@ RACDCERT LIST(LABEL('WMLZCERT_WMLZID')) ID(AIDBADM)
 
 Step 4: Create the Db2 artefacts
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)
+For all jobs
+* DBCG
+* DSNC10.SDSNLOAD
+* DSNC10.DBCG.RUNLIB.LOAD
+* DSNC10.DBCG.SDSNEXIT
+* DSNTEP12
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)
+Create Pseudo Catalog with **AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)**
 
-AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)
+![SQLDI_PC](images/SQLDI_PC.jpg)
 
-Step 5: Install SQLDI Instance
+Create UDFs with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)**
+
+Note that
+1. The LOAD modules in **AIZ.AIDB0211.INSTALL.AIDBLOAD** need to be referenced by the PROC
+2. The PROC will be **ADCD.Z25A.PROCLIB(AIDBPROC)**
+3. The WLM Environment **AIDBWLMENV** needs to be defined in WLM, and activated
+
+example below
+
+```
+//SYSIN    DD *                                          
+                                                         
+  CREATE FUNCTION SYSFUN.AI_SIMILARITY(                  
+                    MLCOL1 VARCHAR(128),                 
+                    VALUE1 VARCHAR(1868),                
+                    MLCOL2 VARCHAR(128),                 
+                    VALUE2 VARCHAR(1868),                
+                    SCHEMA VARCHAR(128),                 
+                    TABNAM VARCHAR(128))                 
+    RETURNS DOUBLE                                       
+    EXTERNAL NAME SIMIUDF                                
+    LANGUAGE C                                           
+    PARAMETER STYLE DB2SQL                               
+    PARAMETER CCSID UNICODE                              
+    PARAMETER VARCHAR NULTERM                            
+    PROGRAM TYPE SUB                                     
+    SCRATCHPAD 20480                                     
+    NO FINAL CALL                                        
+    WLM ENVIRONMENT AIDBWLMENV                           
+    SECURITY DB2                                         
+    READS SQL DATA                                       
+    COLLID SIMIUDF                                       
+    ALLOW PARALLEL                                       
+    NOT DETERMINISTIC                                    
+    RETURNS NULL ON NULL INPUT                           
+    STAY RESIDENT YES                                    
+    NO EXTERNAL ACTION                                   
+    RUN OPTIONS 'POSIX(ON),XPLINK(ON),ENVAR("AISTRC=00")'
+  ;                                                      
+```
+
+Create with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)**
+
+![SQLDI_PKG](images/SQDLI_PKG.jpg)
+
+
+Step 5: Check **SYSPROC.DSNUTILU**
+
+The WLM is **DBCGENVU** defined and points to PROCNAME **DBCGWLMU**
+![dbcgenvu](images/dbcgenvu.jpg)
+
+And the PROC exists in PROCLIB
+![dbcgwlmu](images/dbcgwlmu.jpg)
+
+```
+D WLM,APPLENV=EBCGENVU
+```
+
+![wlmavail_dbcgenvu](images/wlmavail_dbcgenvu.jpg)
+
+
+
+
+Step 6 : Setup WLM & PROC for the UDFs
+
+Create **ADCD.Z25A.PROCLIB(AIDBPROC)** and customize the JCL. Note the USS paths are wrong. PROC needs larger LRECL  
+![aidbproc](images/aidbproc.jpg)
+
+
+
+
+Step 7: Install SQLDI Instance
 
 
 sqldi.sh create
