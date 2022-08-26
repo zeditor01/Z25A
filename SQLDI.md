@@ -393,8 +393,9 @@ Create Pseudo Catalog with **AIZ.AIDB0211.INSTALL.AIDBSAMP(DSNTIJAI)**
 Create UDFs with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBUDFC)**
 
 Note that
-1. The LOAD modules need to be copied to a DB2 LOAD Library ( DSNC10.SDSNLOAD ? )
-2. The The WM Environment AIDBWLMENV needs to be defined , and PROCs added to PROCLIB
+1. The LOAD modules in **AIZ.AIDB0211.INSTALL.AIDBLOAD** need to be referenced by the PROC
+2. The PROC will be **ADCD.Z25A.PROCLIB(AIDBPROC)**
+3. The WLM Environment **AIDBWLMENV** needs to be defined in WLM, and activated
 
 example below
 
@@ -435,9 +436,32 @@ Create with **AIZ.AIDB0211.INSTALL.AIDBSAMP(AIDBBIND)**
 ![SQLDI_PKG](images/SQDLI_PKG.jpg)
 
 
+Step 5: Check **SYSPROC.DSNUTILU**
+
+The WLM is **DBCGENVU** defined and points to PROCNAME **DBCGWLMU**
+![dbcgenvu](images/dbcgenvu.jpg)
+
+And the PROC exists in PROCLIB
+![dbcgwlmu](images/dbcgwlmu.jpg)
+
+```
+D WLM,APPLENV=EBCGENVU
+```
+
+![wlmavail_dbcgenvu](images/wlmavail_dbcgenvu.jpg)
 
 
-Step 5: Install SQLDI Instance
+
+
+Step 6 : Setup WLM & PROC for the UDFs
+
+Create **ADCD.Z25A.PROCLIB(AIDBPROC)** and customize the JCL. Note the USS paths are wrong. PROC needs larger LRECL  
+![aidbproc](images/aidbproc.jpg)
+
+
+
+
+Step 7: Install SQLDI Instance
 
 
 sqldi.sh create
