@@ -455,13 +455,46 @@ D WLM,APPLENV=EBCGENVU
 
 Step 6 : Setup WLM & PROC for the UDFs
 
-Create **ADCD.Z25A.PROCLIB(AIDBPROC)** and customize the JCL. Note the USS paths are wrong. PROC needs larger LRECL  
+Define the WLM **AIDBWLMENV**
+
+![wlm_create](images/wlm_create.jpg)
+
+Check it 
+
+![wlm_check](images/wlm_check.jpg)
+
+Create the PROCLIB Member
+
+Create **ADCD.Z25A.PROCLIB(AIDBPROC)** and customize the JCL. 
 ![aidbproc](images/aidbproc.jpg)
 
+```
+V WLM,POLICY=ETPBASE
 
-
+D WLM,APPLENV=AIDBWLMENV
+```
 
 Step 7: Install SQLDI Instance
+
+
+```
+AIDBADM:/u/ibmuser/smpework: >df -k /u/ibmuser/smpework
+Mounted on     Filesystem                Avail/Total    Files      Status
+/u/ibmuser/smpework (SMPEWORK.ZFS)            2014887/2401920 4294966000 Available
+
+
+ibmuser@192.168.1.191's password:
+IBMUSER:/u/ibmuser: >zfsadm grow -aggregate SMPEWORK.ZFS -size 5000000
+IOEZ00173I Aggregate SMPEWORK.ZFS successfully grown
+SMPEWORK.ZFS (R/W COMP): 4613007 K free out of total 5000400
+
+AIDBADM:/u/ibmuser/smpework: >df -k /u/ibmuser/smpework
+Mounted on     Filesystem                Avail/Total    Files      Status
+/u/ibmuser/smpework (SMPEWORK.ZFS)            4613007/5000400 4294966000 Available
+
+```
+
+zfsadm grow -aggregate SMPEWORK.ZFS -size 5000000
 
 
 sqldi.sh create
