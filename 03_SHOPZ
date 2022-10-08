@@ -14,7 +14,37 @@ Two certificates
 1. Trust ShopZ certificate - to download from Download Server
 2. z/OSMF certificate - for z/OSMF to behave securely
 
-ADCD Z25A had an expired certificate for use with ShopZ ... DOH !
+### ShopZ Trust
+
+Given a copy by Andrew.
+
+S:\ZSHOP\TLS\digicert.global.root.ca.cert
+LABEL 'DIGITAL GLOBAL ROOT CA'
+
+![shopzcert](images/digital_global_root_ca.png)
+
+Tried to Add it, but found it's already there
+
+```
+RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
+RACFDCERT LISTRING(SHOPZ)
+RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
+RACDCERT ID(IBMUSER) CONNECT(CERTAUTH LABEL('IBMSHOPZ') RING((SHOPZ) USAGE(CERTAUTH) DEFAULT)
+```
+
+Not quit sure how the TTLERules later on worked, but I assume this certificate is a SITE CA Trust or something similar.
+
+### z/OSMF Certificate
+
+Stumbled across problems when performing a portable software instance installation, getting errors during z/OSMF workflow. 
+
+```
+IZUG1040E A secure connection to system "S0W1" could not be established.
+```
+
+Also noticed that the browser was not establishing a secure connection. This was not a problem in the basic dialogs, 
+but probably was a problem when the z/OSMF PSI dialog tried to access another zOSMF service. 
+z/OSMF ADCD Z25A had an expired certificate for use with ShopZ ... DOH !
 
 ```
 RACDCERT CERTAUTH LIST(LABEL('zOSMFCA'))
@@ -49,7 +79,7 @@ Digital certificate information for CERTAUTH:
 
 Expired certificates can't be renewed / extended. ( you need to do that before expirey ).
 
-### Setup new certificate etc...
+#### Setup new certificate etc...
 
 Step 1 : Generate new self signed CA certificate , certificate & refresh RACF.
 
@@ -105,6 +135,8 @@ Start z/OSMF with manual override on the PARM member if needed.
 ```
 s izusvr1,izuprm=as
 ```
+
+
 
 ## TLS Configuration.
 
