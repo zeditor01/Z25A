@@ -79,6 +79,17 @@ Digital certificate information for CERTAUTH:
 
 Expired certificates can't be renewed / extended. ( you need to do that before expirey ).
 
+
+
+Finally remote the "not secure" error in the browser by replacing the IP Address with a hostname .
+
+```
+SSL_BAD_CERT_DOMAIN
+
+https://192.168.1.191:10443/zosmf/ 
+```
+
+
 #### Setup new certificate etc...
 
 Step 1 : Generate new self signed CA certificate , certificate & refresh RACF.
@@ -257,14 +268,66 @@ dy defined.
 
 
 
-## Clock
+## ShopZ PSI Process.
 
-Set the Clock .... Edit ADCD.Z24C.PARMLIB because the USER.Z24C.PARMLIB concatenation does NOT work
+Order a PSI Serverpac. ( Classic CDC for IMS )
 
-Member **IEASYSDB** and **IASSYSAL** both point to CLOCK00
+Review the Download Package
 
-![ieasysdb](images/ieasysdb.jpg)
+![shopz01](images/shopz01.jpg)
 
-Set the clock to Sydney by editing **ADCD.Z25A.PARMLIB(CLOCK00)**
+Open the Server XML info, and copy the Server XML snippet to the clipboard.
 
-![clock00](images/clock00.jpg)
+```
+=== Order Size and File System Size Information ========================
+                                                                        
+The size of your order is 549 MB                                        
+                                                                        
+You need space in the file system used by z/OSMF Software Management    
+Add Portable Software Instance for approximately twice the size of your 
+order. To convert to 3390 cylinders, multiply the number of MB by 1.25  
+and then multiply by 2.                                                 
+                                                                        
+For example, for a size of 5000 MB, then:                               
+( (5,000 MB) * (1.25 CYL/MB) ) * 2 = 12,500 cylinders                   
+                                                                        
+== Server XML for Add Portable Software Instance From Download Server ==
+You can copy the below statements into the z/OSMF Software Management   
+Server XML box.                                                         
+                                                                        
+<SERVER                                                                 
+  host="deliverycb-mul.dhe.ibm.com"                                     
+  user="P61f4395"                                                       
+  pw="b8346803787q36r"                                                  
+  >                                                                     
+  <PACKAGE                                                              
+      file="2022092900018/PROD/content/GIMPAF.XML"                      
+      hash="000698051AF35E2A9B5307FD7E65B6CCE7C5542C"                   
+      id="ST251564.content"                                             
+   >                                                                    
+  </PACKAGE>                                                            
+</SERVER>      
+```
+
+Open z/OSMF, and open Software Configuration.
+
+```
+https://192.168.1.191:10443/zosmf/ 
+```
+
+Choose "portable software instances"
+
+![psi01](images/psi01.jpg)
+
+Add from Download Server
+
+![psi02](images/psi02.jpg)
+
+Page 1
+
+![psi03](images/psi03.jpg)
+
+Page 2 
+
+![psi04](images/psi04.jpg)
+
