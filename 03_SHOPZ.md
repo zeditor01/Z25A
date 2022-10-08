@@ -602,5 +602,40 @@ Configure This Deployment
 
 ![deploy07](images/deploy07.jpg)
 
+welcome - YES 
+DLIBS - YES 
+Model - Deployment Source 
+SMPE Zones - Names from model TGT + DLIB 
+Datasets - Names, volumes, storage groups : select ALL ... modify all  - volume = USER0E
+Catalogs - CATALOG.Z25A.MASTER 
+Volumes and Storage Classes - default 
+Mount Points - define the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - CB.OSHOOLI.ZFS 
+
+
+Zones - are MVST00 and MVSD100
+![deploy08](images/deploy08.jpg)
+
+Edit the Target Volumes ( USER0E )
+![deploy09](images/deploy09.jpg)
+
+Edit the Target Mount Point 
+
+![deploy10](images/deploy10.jpg)
+
+Define the Job Settings
+
+![deploy11](images/deploy11.jpg)
+
+View the Deployment Summary
+
+![deploy12](images/deploy12.jpg) 
+
+Submit Deployment Jobs
+
+![deploy13](images/deploy13.jpg)
+
+
+
+
 
 
