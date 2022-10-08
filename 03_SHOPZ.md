@@ -634,8 +634,33 @@ Submit Deployment Jobs
 
 ![deploy13](images/deploy13.jpg)
 
+The first Job is (hopefully) avoidable RACF controls that can be ignored.
+I just did Override Complete.
+
+Now I submit the second job ( Unzip : IZUD02UZ ).
+
+![deploy14](images/deploy14.jpg)
+
+Now I submit the third job ( Rename : IZUD03RN ).
+
+Now I submit the fourth job ( Update CSI : IZUD04UC ).
+
+And it seems to have worked !
+
+![deploy15](images/deploy15.jpg)
 
 
+Now take a look at the Workflows
 
+![deploy16](images/deploy16.jpg)
+
+
+Just Click thru the bullshit stuff
+
+![deploy17](images/deploy17.jpg)
+
+Perform the Post-Install Stuff. This is environment stuff, prior to instance creation.
+
+![deploy18](images/deploy18.jpg)
 
 
