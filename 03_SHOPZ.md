@@ -573,9 +573,34 @@ v sms,volume(USER0E),enable
 
 ## ShopZ PSI Install Process.
 
+Open z/OSMF Deployments
+
+![deploy01](images/deploy01.jpg)
 
 
+Specify New Deployment
 
+![deploy02](images/deploy02.jpg)
+
+Select The Software to Deploy
+
+![deploy03](images/deploy03.jpg)
+
+Choose Classic CDC for IMS - Serverpac ST251564
+
+![deploy04](images/deploy04.jpg)
+
+Deployment Objective is New Global CSI
+
+![deploy05](images/deploy05.jpg)
+
+Check for Missing SYSMODS ( Nah )
+
+![deploy06](images/deploy06.jpg)
+
+Configure This Deployment
+
+![deploy07](images/deploy07.jpg)
 
 
 
