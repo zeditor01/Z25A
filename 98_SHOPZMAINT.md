@@ -118,6 +118,7 @@ This does (a) Download to ZFS plus (b) SMPE RECEIVE into Global Zone
 
 ## 5. Run an SMPE Apply
 
+first with the CHECK, Then without.
 
 ```
 //IBMUSERJ JOB  (NPA),'INIT 3380 DASD',CLASS=A,MSGCLASS=H,   
@@ -140,12 +141,14 @@ This does (a) Download to ZFS plus (b) SMPE RECEIVE into Global Zone
  SET BDY(MVST  ).                                            
  APPLY   S(                                                  
  UI79663                                                     
- ) GROUPEXTEND BYPASS(HOLDSYS)                               
+ ) CHECK GROUPEXTEND BYPASS(HOLDSYS)                               
  .                                                           
 /*                                                           
 ```
 
 ## 6. Read the Hold Data ( eg: restart z/OSMF )
+
+Restart z/OSMF.
 
 
 
