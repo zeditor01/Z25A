@@ -1,0 +1,127 @@
+# ShopZ Usage.
+
+## ShopZ Access
+
+logon with IBM userid and password.
+order Serverpacs ( which will tend to be portable software instances now )
+Downloads must be performed using secure methods ( https or ftps )
+RACF certificates and keyrings must be used, and they must be valid
+z/OSMF must be setup correctly to use certificates
+
+## RACF Certificates
+
+Two certificates
+1. Trust ShopZ certificate - to download from Download Server
+2. z/OSMF certificate - for z/OSMF to behave securely
+
+ADCD Z25A had an expired certificate for use with ShopZ ... DOH !
+
+```
+RACDCERT CERTAUTH LIST(LABEL('zOSMFCA'))
+Digital certificate information for CERTAUTH:
+  Label: zOSMFCA
+  Certificate ID: 2QiJmZmDhZmjganW4tTGw8FA
+  Status: TRUST
+  Start Date: 2013/11/18 16:00:00
+  End Date:   2021/08/21 15:59:59
+  Serial Number:
+       >00<
+  Issuer's Name:
+       >CN=z/OSMF CertAuth for Security Domain.OU=IZUDFLT<
+  Subject's Name:
+       >CN=z/OSMF CertAuth for Security Domain.OU=IZUDFLT<
+  Signing Algorithm: sha1RSA
+  Key Usage: CERTSIGN
+  Key Type: RSA
+  Key Size: 1024
+  Private Key: YES
+  Certificate Fingerprint (SHA256):
+       A3:F2:E0:6F:09:94:E4:9D:68:00:48:8F:3F:4B:EF:9F:
+       9F:C8:B1:50:0A:de:57:23:AB:DC:B1:02:0B:A4:33:07
+  Ring Associations:
+    Ring Owner: IZUSVR
+    Ring:
+       >IZUKeyring.IZUDFLT<
+    Ring Owner: START1
+    Ring:
+       >JES2EDS<
+```
+
+Expired certificates can't be renewed / extended. ( you need to do that before expirey ).
+
+### Setup new certificate etc...
+
+Step 1 : Generate new self signed CA certificate , certificate & refresh RACF.
+
+
+```
+racdcert certauth gencert subjectsdn(cn('zOSMF CA 2') o('IBM') c('AU')) 
+size(2048) withlabel('zOSMFCA2') notafter(date(2031-12-31))
+
+racdcert id(izusvr) gencert subjectsdn(cn('zOSMF Server 2') o('IBM')
+c('AU')) size(2048) withlabel('zOSMFServer2') notafter(date(2031-12-31))
+signwith(certauth label('zOSMFCA2'))
+
+setr raclist(digtcert) refr
+```
+
+Step 2 : Plonk them in a keyring
+
+```
+racdcert addring(zOSMFRing2) id(izusvr)
+
+racdcert connect(ring(zOSMFRing2) certauth label('zOSMFCA2')) id(izusvr)
+
+racdcert connect(ring(zOSMFRing2) id(izusvr) label('zOSMFServer2')
+default) id(izusvr)
+
+racdcert listring(zOSMFRing2) id(izusvr)
+```
+
+Step 3 : update z/OSMF config to refer to the new keyring
+
+Find out that ZUSVR1 invokes PARMLIB member AS (from SDSF output)
+
+```
+**************** TOP OF DATA ****************************
+      J E S 2  J O B  L O G  --  S Y S T E M  S 0 W 1  --
+                                                         
+ ---- SATURDAY,  08 OCT 2022 ----                        
+  $HASP373 IZUSVR1  STARTED                              
+  IEF403I IZUSVR1 - STARTED - TIME=09.47.08              
+  +IEE252I MEMBER IZUPRMAS FOUND IN FEU.Z25A.PARMLIB     
+  +CWWKE0001I: The server zosmfServer has been launched. 
+```
+
+Edit IZUPRMAS ( in both ADCD and FEU Proclibs )
+* ADCD.Z25A.PARMLIB(IZUPRMAS)
+* FEU.Z25A.PARMLIB(IZUPRMAS)
+
+```
+KEYRING_NAME('zOSMFRing2')
+```
+
+Start z/OSMF with manual override on the PARM member if needed.
+```
+s izusvr1,izuprm=as
+```
+
+## TLS Configuration.
+
+
+
+
+
+
+
+## Clock
+
+Set the Clock .... Edit ADCD.Z24C.PARMLIB because the USER.Z24C.PARMLIB concatenation does NOT work
+
+Member **IEASYSDB** and **IASSYSAL** both point to CLOCK00
+
+![ieasysdb](images/ieasysdb.jpg)
+
+Set the clock to Sydney by editing **ADCD.Z25A.PARMLIB(CLOCK00)**
+
+![clock00](images/clock00.jpg)
