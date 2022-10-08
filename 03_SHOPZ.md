@@ -136,12 +136,123 @@ Start z/OSMF with manual override on the PARM member if needed.
 s izusvr1,izuprm=as
 ```
 
+these steps, combined with the PAGENT rules below, seemed to get HTTPS transfers from ShopZ to work directly to z/OS
+
+
 
 
 ## TLS Configuration.
 
+Setup PAGENT
+
+ADCD.Z25A.PROCLIB(PAGENT)
+```
+//PAGENT   PROC
+//*
+//* IBM Communications Server for z/OS
+//*
+//PAGENT   EXEC PGM=PAGENT,REGION=0M,TIME=NOLIMIT,
+//         PARM='ENVAR("_CEE_ENVFILE_S=DD:STDENV")/'
+//SYSPRINT DD   SYSOUT=*
+//STDENV   DD   *
+PAGENT_CONFIG_FILE=/etc/pagent.conf
+PAGENT_LOG_FILE=/tmp/pagent.log
+LIBPATH=/usr/lib
+TZ=AEST-10AEDT
+/*
+```
+
+/etc/pagent.conf
+```
+LogLevel 255
+TcpImage TCPIP /etc/pagent.TCPIP.conf FLUSH PURGE 600
+```
+
+/etc/pagent.TCPIP.conf
+
+```
+TTLSConfig /etc/pagent.TTLSRule.policy
+```
+
+/etc/pagent.TTLSRule.policy
 
 
+```
+TTLSRule                          shopz
+{
+RemoteAddrGroupRef              shopzRAG
+RemotePortRange                 21
+Direction                       Outbound
+TTLSGroupActionRef              shopzGA
+TTLSEnvironmentActionRef        shopzEA
+}
+IpAddrGroup                       shopzRAG
+{
+IpAddr
+{
+# @host deliverycb-mul.dhe.ibm.com
+Addr                          129.35.224.118
+}
+IpAddr
+{
+# @host deliverycb-bld.dhe.ibm.com
+Addr                          170.225.126.47
+}
+}
+TTLSGroupAction                   shopzGA
+{
+TTLSEnabled                     On
+}
+TTLSEnvironmentAction             shopzEA
+{
+HandshakeRole                   Client
+TTLSKeyringParmsRef             shopzKP
+TTLSEnvironmentAdvancedParmsRef shopzEAP
+}
+TTLSEnvironmentAdvancedParms      shopzEAP
+{
+TLSv1.1                         Off
+TLSv1.2                         On
+ApplicationControlled           On
+SecondaryMap                    On
+}
+TTLSKeyringParms                  shopzKP
+{
+Keyring                         IBMUSER/SHOPZ
+}
+```
+
+
+Keyring shite that didnt work
+
+```
+RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
+
+RACDCERT LISTRING(SHOPZ)
+
+Allocate VB, LRECL84
+IBMUSER.SHOPZCRT
+
+
+RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
+
+RACDCERT LISTRING(SHOPZ)
+
+RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
+
+RACDCERT ID(IBMUSER) CONNECT(CERTAUTH LABEL('IBMSHOPZ') RING((SHOPZ) USAGE(CERTAUTH) DEFAULT)
+
+
+RACDCERT ID(IBMUSER) LIST(LABEL('IBMSHOPZ'))
+
+
+RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
+
+IRRD109I The certificate cannot be added.  Profile 083BE056904246B1A1756AC95991
+C74A.CN=DigiCert¢Global¢Root¢CA.OU=www.digicert.com.O=DigiCert¢Inc.C=US is alrea
+dy defined.
+***
+```
 
 
 
