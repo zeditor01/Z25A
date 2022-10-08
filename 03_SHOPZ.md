@@ -79,6 +79,17 @@ Digital certificate information for CERTAUTH:
 
 Expired certificates can't be renewed / extended. ( you need to do that before expirey ).
 
+
+
+Finally remote the "not secure" error in the browser by replacing the IP Address with a hostname .
+
+```
+SSL_BAD_CERT_DOMAIN
+
+https://192.168.1.191:10443/zosmf/ 
+```
+
+
 #### Setup new certificate etc...
 
 Step 1 : Generate new self signed CA certificate , certificate & refresh RACF.
@@ -136,24 +147,187 @@ Start z/OSMF with manual override on the PARM member if needed.
 s izusvr1,izuprm=as
 ```
 
+these steps, combined with the PAGENT rules below, seemed to get HTTPS transfers from ShopZ to work directly to z/OS
+
+
 
 
 ## TLS Configuration.
 
+Setup PAGENT
+
+ADCD.Z25A.PROCLIB(PAGENT)
+```
+//PAGENT   PROC
+//*
+//* IBM Communications Server for z/OS
+//*
+//PAGENT   EXEC PGM=PAGENT,REGION=0M,TIME=NOLIMIT,
+//         PARM='ENVAR("_CEE_ENVFILE_S=DD:STDENV")/'
+//SYSPRINT DD   SYSOUT=*
+//STDENV   DD   *
+PAGENT_CONFIG_FILE=/etc/pagent.conf
+PAGENT_LOG_FILE=/tmp/pagent.log
+LIBPATH=/usr/lib
+TZ=AEST-10AEDT
+/*
+```
+
+/etc/pagent.conf
+```
+LogLevel 255
+TcpImage TCPIP /etc/pagent.TCPIP.conf FLUSH PURGE 600
+```
+
+/etc/pagent.TCPIP.conf
+
+```
+TTLSConfig /etc/pagent.TTLSRule.policy
+```
+
+/etc/pagent.TTLSRule.policy
+
+
+```
+TTLSRule                          shopz
+{
+RemoteAddrGroupRef              shopzRAG
+RemotePortRange                 21
+Direction                       Outbound
+TTLSGroupActionRef              shopzGA
+TTLSEnvironmentActionRef        shopzEA
+}
+IpAddrGroup                       shopzRAG
+{
+IpAddr
+{
+# @host deliverycb-mul.dhe.ibm.com
+Addr                          129.35.224.118
+}
+IpAddr
+{
+# @host deliverycb-bld.dhe.ibm.com
+Addr                          170.225.126.47
+}
+}
+TTLSGroupAction                   shopzGA
+{
+TTLSEnabled                     On
+}
+TTLSEnvironmentAction             shopzEA
+{
+HandshakeRole                   Client
+TTLSKeyringParmsRef             shopzKP
+TTLSEnvironmentAdvancedParmsRef shopzEAP
+}
+TTLSEnvironmentAdvancedParms      shopzEAP
+{
+TLSv1.1                         Off
+TLSv1.2                         On
+ApplicationControlled           On
+SecondaryMap                    On
+}
+TTLSKeyringParms                  shopzKP
+{
+Keyring                         IBMUSER/SHOPZ
+}
+```
+
+
+Keyring shite that didnt work
+
+```
+RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
+
+RACDCERT LISTRING(SHOPZ)
+
+Allocate VB, LRECL84
+IBMUSER.SHOPZCRT
+
+
+RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
+
+RACDCERT LISTRING(SHOPZ)
+
+RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
+
+RACDCERT ID(IBMUSER) CONNECT(CERTAUTH LABEL('IBMSHOPZ') RING((SHOPZ) USAGE(CERTAUTH) DEFAULT)
+
+
+RACDCERT ID(IBMUSER) LIST(LABEL('IBMSHOPZ'))
+
+
+RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
+
+IRRD109I The certificate cannot be added.  Profile 083BE056904246B1A1756AC95991
+C74A.CN=DigiCert¢Global¢Root¢CA.OU=www.digicert.com.O=DigiCert¢Inc.C=US is alrea
+dy defined.
+***
+```
 
 
 
 
+## ShopZ PSI Process.
 
+Order a PSI Serverpac. ( Classic CDC for IMS )
 
-## Clock
+Review the Download Package
 
-Set the Clock .... Edit ADCD.Z24C.PARMLIB because the USER.Z24C.PARMLIB concatenation does NOT work
+![shopz01](images/shopz01.jpg)
 
-Member **IEASYSDB** and **IASSYSAL** both point to CLOCK00
+Open the Server XML info, and copy the Server XML snippet to the clipboard.
 
-![ieasysdb](images/ieasysdb.jpg)
+```
+=== Order Size and File System Size Information ========================
+                                                                        
+The size of your order is 549 MB                                        
+                                                                        
+You need space in the file system used by z/OSMF Software Management    
+Add Portable Software Instance for approximately twice the size of your 
+order. To convert to 3390 cylinders, multiply the number of MB by 1.25  
+and then multiply by 2.                                                 
+                                                                        
+For example, for a size of 5000 MB, then:                               
+( (5,000 MB) * (1.25 CYL/MB) ) * 2 = 12,500 cylinders                   
+                                                                        
+== Server XML for Add Portable Software Instance From Download Server ==
+You can copy the below statements into the z/OSMF Software Management   
+Server XML box.                                                         
+                                                                        
+<SERVER                                                                 
+  host="deliverycb-mul.dhe.ibm.com"                                     
+  user="P61f4395"                                                       
+  pw="b8346803787q36r"                                                  
+  >                                                                     
+  <PACKAGE                                                              
+      file="2022092900018/PROD/content/GIMPAF.XML"                      
+      hash="000698051AF35E2A9B5307FD7E65B6CCE7C5542C"                   
+      id="ST251564.content"                                             
+   >                                                                    
+  </PACKAGE>                                                            
+</SERVER>      
+```
 
-Set the clock to Sydney by editing **ADCD.Z25A.PARMLIB(CLOCK00)**
+Open z/OSMF, and open Software Configuration.
 
-![clock00](images/clock00.jpg)
+```
+https://192.168.1.191:10443/zosmf/ 
+```
+
+Choose "portable software instances"
+
+![psi01](images/psi01.jpg)
+
+Add from Download Server
+
+![psi02](images/psi02.jpg)
+
+Page 1
+
+![psi03](images/psi03.jpg)
+
+Page 2 
+
+![psi04](images/psi04.jpg)
+
