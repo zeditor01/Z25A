@@ -331,3 +331,18 @@ Page 2
 
 ![psi04](images/psi04.jpg)
 
+
+Let the Software Download Job Run. Watch the smpework ZFE fill up.
+
+```
+IBMUSER:/u/ibmuser/smpework/ccdcims: >ls
+CPYRIGHT                              S0005.CB.ST251564.CAC.ACACLOAD.pax.Z  S0010.CB.ST251564.CAC.ACACSKEL.pax.Z
+GIMPAF.XML                            S0006.CB.ST251564.CAC.ACACMAC.pax.Z   S0011.CB.ST251564.CAC.SCACBASE.pax.Z
+IZUD00DF.json                         S0007.CB.ST251564.CAC.ACACMSGS.pax.Z  S0012.CB.ST251564.CAC.SCACCONF.pax.Z
+S0003.CB.ST251564.CAC.ACACBASE.pax.Z  S0008.CB.ST251564.CAC.ACACSAMP.pax.Z  S0013.CB.ST251564.CAC.SCACLOAD.pax.Z
+S0004.CB.ST251564.CAC.ACACCONF.pax.Z  S0009.CB.ST251564.CAC.ACACSIDE.pax.Z
+IBMUSER:/u/ibmuser/smpework/ccdcims: >
+```
+
+
+
