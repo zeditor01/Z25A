@@ -331,8 +331,11 @@ Page 2
 
 ![psi04](images/psi04.jpg)
 
+Submit Job
 
-Let the Software Download Job Run. Watch the smpework ZFE fill up.
+![psi05](images/psi05.jpg)
+
+Let the Software Download Job Run. Watch the smpework ZFS fill up.
 
 ```
 IBMUSER:/u/ibmuser/smpework/ccdcims: >ls
@@ -344,5 +347,8 @@ S0004.CB.ST251564.CAC.ACACCONF.pax.Z  S0009.CB.ST251564.CAC.ACACSIDE.pax.Z
 IBMUSER:/u/ibmuser/smpework/ccdcims: >
 ```
 
+Back to Step 3 of the Download workflow. Refresh etc... Remember to complete Steps 3 & 4 before going to deployment of PSI.
+
+![psi06](images/psi06.jpg)
 
 
