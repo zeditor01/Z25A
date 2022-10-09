@@ -73,7 +73,7 @@ This does (a) Download to ZFS plus (b) SMPE RECEIVE into Global Zone
 //*                                                                             
 //SMPER1  EXEC PGM=GIMSMP,REGION=0M,                                            
 //             PARM='PROCESS=WAIT'                                              
-//SMPCSI   DD  DISP=SHR,DSN=MVS.global.csi                     
+//SMPCSI   DD  DISP=SHR,DSN=MVS.GLOBAL.CSI                     
 //SMPNTS   DD  PATHDISP=KEEP,                                                   
 //             PATH='/u/ibmuser/smpework/maint/'                       
 //SMPOUT   DD  SYSOUT=*                                                         
