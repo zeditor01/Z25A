@@ -21,15 +21,23 @@ Given a copy by Andrew.
 S:\ZSHOP\TLS\digicert.global.root.ca.cert
 LABEL 'DIGITAL GLOBAL ROOT CA'
 
+RACDCERT CERTAUTH LIST(SERIALNUMBER(083BE056904246B1A1756AC95991C74A))
+
+RACDCERT CERTAUTH LIST(LABEL('DIGICERT GLOBAL ROOT CA'))
+
+
 ![shopzcert](images/digital_global_root_ca.png)
 
 Tried to Add it, but found it's already there
 
 ```
 RACDCERT ID(IBMUSER) ADDRING(SHOPZ)
-RACFDCERT LISTRING(SHOPZ)
+RACDCERT LISTRING(SHOPZ)
 RACDCERT ADD('IBMUSER.SHOPZCRT') CERTAUTH TRUST WITHLABEL ('IBMSHOPZ')
 RACDCERT ID(IBMUSER) CONNECT(CERTAUTH LABEL('IBMSHOPZ') RING((SHOPZ) USAGE(CERTAUTH) DEFAULT)
+
+RACDCERT ID(IBMUSER) CONNECT(CERTAUTH LABEL('DIGICERT GLOBAL ROOT CA') RING((SHOPZ) USAGE(CERTAUTH) DEFAULT)
+
 ```
 
 Not quit sure how the TTLERules later on worked, but I assume this certificate is a SITE CA Trust or something similar.
@@ -119,6 +127,19 @@ default) id(izusvr)
 racdcert listring(zOSMFRing2) id(izusvr)
 ```
 
+```
+Digital ring information for user IZUSVR:                             
+                                                                      
+  Ring:                                                               
+       >zOSMFRing2<                                                   
+  Certificate Label Name             Cert Owner     USAGE      DEFAULT
+  --------------------------------   ------------   --------   -------
+  zOSMFCA2                           CERTAUTH       CERTAUTH     NO   
+  zOSMFServer2                       ID(IZUSVR)     PERSONAL     YES  
+                                                                      
+***                                                                   
+```
+
 Step 3 : update z/OSMF config to refer to the new keyring
 
 Find out that ZUSVR1 invokes PARMLIB member AS (from SDSF output)
@@ -133,6 +154,23 @@ Find out that ZUSVR1 invokes PARMLIB member AS (from SDSF output)
   +IEE252I MEMBER IZUPRMAS FOUND IN FEU.Z25A.PARMLIB     
   +CWWKE0001I: The server zosmfServer has been launched. 
 ```
+
+Edit ADCD.Z25A.PROCLIB(IZUSVR1) to set IZUPRM='AS'
+
+```
+//IZUSVR1  PROC PARMS='zosmfServer',     /* Server parms */        
+//             ROOT='/usr/lpp/zosmf',    /* zOSMF install root */  
+//             WLPDIR='/usr/lpp/zosmf/liberty', /* Liberty DIR */  
+//             OUTCLS='*',               /* Sysout class */        
+//             USERDIR='/global/zosmf',     /* Config dir */       
+//             TRACE='N',                /* Trace option */        
+//             KCINDEX='N',            /* KC index rebuild flag */ 
+//             IZUPRM='AS',      /* Parmlib suffixes or PREV */    
+//             SERVER='AUTOSTART',       /* AUTOSTART server */    
+//             Z='0',                    /* Reserved for IBM */    
+//             IZUMEM='NOLIMIT'            /* Server memlimit */   
+```
+
 
 Edit IZUPRMAS ( in both ADCD and FEU Proclibs )
 * ADCD.Z25A.PARMLIB(IZUPRMAS)
