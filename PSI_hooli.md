@@ -46,9 +46,21 @@ Server XML box.
 ```
 
 
-
 ## 2. Download the Serverpac to ZFS 
 
+Open z/OSMF, and open Software Configuration.
+
+```
+https://192.168.1.191:10443/zosmf/ 
+```
+
+Choose "portable software instances"
+
+![psi01](images/psi01.jpg)
+
+Add from Download Server
+
+![psi02](images/psi02.jpg)
 
 
 ## 3. Invoke the z/OSMF dialog to deploy the hooli PSI
