@@ -116,4 +116,27 @@ The rename job produces this outcome.
 
 ![ccdc07](images/ccdc07.JPG)
 
+And the CSI Job just updates the information in the CSI zones to reflect what has been done.
+The deployment jobs should now all show as complete.
+
+![ccdc08](images/ccdc08.JPG)
+
+
+## Perform Post-Install Workflows
+
+There are two workflows to review.
+
+![ccdc09](images/ccdc09.JPG)
+
+
+The "Your Order" Workflow is motherhood and apple pie. Just click yes, yes, yes
+
+
+![ccdc10](images/ccdc10.JPG)
+
+The Post Deploy Workflow is important for the product to work.
+
+![ccdc11](images/ccdc11.JPG)
+
+
 
