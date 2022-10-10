@@ -166,7 +166,9 @@ Job to Relink load modeules with CALLLIBs.
 
 ![ccdc18](images/ccdc18.JPG)
 
+Job to Write Variables to a property file.
 
+![ccdc19](images/ccdc19.JPG)
 
 
 
