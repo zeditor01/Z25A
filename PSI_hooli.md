@@ -151,18 +151,28 @@ This json file contains a structured specification of all the steps, the DDDEFs 
 
 Won't bother to screenshot every step, but the following notes cover the entries in the different pages
   
-* welcome - YES
-* DLIBS - YES
-* Model - Deployment Source
-* SMPE Zones - Names from model TGT + DLIB
-* Datasets - Names, volumes, storage groups : select ALL ... modify all  - volume = USER0E
-* Catalogs - CATALOG.Z25A.MASTER
+* welcome - press next
+* DLIBS - YES, we do want to copy the DLIBs
+* Model - Accept the Deployment Source as the model
+* SMPE Zones - Accept names from model TGT + DLIB
+* Datasets - Names, volumes, storage groups : select ALL ... modify all to control deployment (screenshot below)
+* Catalogs - Accept CATALOG.Z25A.MASTER
 * Volumes and Storage Classes - default
-* Mount Points - define the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - CB.OSHOOLI.ZFS  
+* Mount Points - /u/wallen/hooli - HOOLI.ZFS  (screenshot below)
+
   
-  
+Select all datasets and modify the desired HLQ and the desired volume or storage class   
+![deployhooli08](images/deployhooli08.JPG)     
+
+Specify the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - HOOLI.ZFS  
+![deployhooli09](images/deployhooli09.JPG)      
+
 ### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
+I was prompted to provide the storage class of generated jobs (SCBASE). 
+![deployhooli10](images/deployhooli10.JPG)  
+
+  
   
 #### 3.6 View the deployment summary.
 
