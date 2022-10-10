@@ -151,22 +151,57 @@ This json file contains a structured specification of all the steps, the DDDEFs 
 
 Won't bother to screenshot every step, but the following notes cover the entries in the different pages
   
-* welcome - YES
-* DLIBS - YES
-* Model - Deployment Source
-* SMPE Zones - Names from model TGT + DLIB
-* Datasets - Names, volumes, storage groups : select ALL ... modify all  - volume = USER0E
-* Catalogs - CATALOG.Z25A.MASTER
+* welcome - press next
+* DLIBS - YES, we do want to copy the DLIBs
+* Model - Accept the Deployment Source as the model
+* SMPE Zones - Accept names from model TGT + DLIB
+* Datasets - Names, volumes, storage groups : select ALL ... modify all to control deployment (screenshot below)
+* Catalogs - Accept CATALOG.Z25A.MASTER
 * Volumes and Storage Classes - default
-* Mount Points - define the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - CB.OSHOOLI.ZFS  
+* Mount Points - /u/wallen/hooli - HOOLI.ZFS  (screenshot below)
+
   
-  
+Select all datasets and modify the desired HLQ and the desired volume or storage class   
+![deployhooli08](images/deployhooli08.JPG)     
+
+Specify the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - HOOLI.ZFS  
+![deployhooli09](images/deployhooli09.JPG)      
+
 ### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
+I was prompted to provide the storage class of generated jobs (SCBASE). 
+
+![deployhooli10](images/deployhooli10.JPG)  
+
+Next, I am ready to ...   
   
 #### 3.6 View the deployment summary.
 
+remind myself what I specified
+  
+![deployhooli11](images/deployhooli11.JPG)  
+  
 ### 3.7 Submit deployment jobs.
 
+Four jobs are generated.
+* IZUD01RA	RACF Definitions: superflous for me : Override Complete
+* IZUD02UZ	Unzip Data Sets: Run This
+* IZUD03RN	Rename Data Sets: Run This
+* IZUD04UC	Update CSI Data Sets: Run This  
+
+  ![deployhooli12](images/deployhooli12.JPG)  
+  
+  These jobs are saved to IBMUSER.DM.D221010.T131937.CNTL
+  But run them from the z/OSMF workflow to keep track.
+  
+  The unzip job results in this
+  ![deployhooli13](images/deployhooli13.JPG)  
+  
+  The rename job results in this
+  ![deployhooli14](images/deployhooli14.JPG)  
+  
+  The CSI job just updates the CSI
+  
+  
 ### 3.8 Specify the properties for the target software instance.
 
