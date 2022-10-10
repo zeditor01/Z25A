@@ -67,7 +67,7 @@ drwxrwxrwx   6 OMVSKERN SYS1        8192 Oct  9 23:42 ..
 
 When Download finishes RC00
 
-Page 3. Accept Job Card etc...
+Page 3. Accept Job Settings, Job Card etc... for the SMPE jobs to be generated
 
 Page 4. Finish
 
@@ -92,7 +92,9 @@ ZFS File Systems
 
 ![ccdc04](images/ccdc04.JPG)
 
-Job Settings
+
+
+Job Settings for the deployment jobs:
 
 ```
 IBMUSER.DM.D221010.T164457.CNTL
