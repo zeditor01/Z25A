@@ -148,6 +148,18 @@ This is the SMPE stuff, all wrapped up in a browser dialog, which will be used t
 This json file contains a structured specification of all the steps, the DDDEFs the volumes or storage groups etc...  
   
 ![deployhooli07](images/deployhooli07.JPG)     
+
+Won't bother to screenshot every step, but the following notes cover the entries in the different pages
+  
+* welcome - YES
+* DLIBS - YES
+* Model - Deployment Source
+* SMPE Zones - Names from model TGT + DLIB
+* Datasets - Names, volumes, storage groups : select ALL ... modify all  - volume = USER0E
+* Catalogs - CATALOG.Z25A.MASTER
+* Volumes and Storage Classes - default
+* Mount Points - define the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - CB.OSHOOLI.ZFS  
+  
   
 ### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
