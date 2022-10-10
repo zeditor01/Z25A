@@ -42,11 +42,11 @@ Page 1
 * System = S0W1
 * USS Directory = /u/ibmuser/smpework/CCDCIMS
 
-![ccdc01](images/ccdc01.jpg)
+![ccdc01](images/ccdc01.JPG)
 
 Page 2. Accept previous defaults ( CLIENT XML and JOB Card ) 
 
-![ccdc02](images/ccdc02.jpg)
+![ccdc02](images/ccdc02.JPG)
 
 Submit Job
 
@@ -67,7 +67,7 @@ drwxrwxrwx   6 OMVSKERN SYS1        8192 Oct  9 23:42 ..
 
 When Download finishes RC00
 
-Page 3. Accept Job Card etc...
+Page 3. Accept Job Settings, Job Card etc... for the SMPE jobs to be generated
 
 Page 4. Finish
 
@@ -86,13 +86,15 @@ Follow the normal Deployment workflow
 
 Datasets
 
-![ccdc03](images/ccdc03.jpg) 
+![ccdc03](images/ccdc03.JPG) 
 
 ZFS File Systems
 
-![ccdc04](images/ccdc04.jpg)
+![ccdc04](images/ccdc04.JPG)
 
-Job Settings
+
+
+Job Settings for the deployment jobs:
 
 ```
 IBMUSER.DM.D221010.T164457.CNTL
