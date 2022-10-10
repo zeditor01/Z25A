@@ -202,6 +202,10 @@ Four jobs are generated.
   
   The CSI job just updates the CSI
   
+  And the Deployment of datasets is complete.
+  ![deployhooli15](images/deployhooli15.JPG)    
+  
+  
   
 ### 3.8 Specify the properties for the target software instance.
 
