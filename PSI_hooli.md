@@ -208,34 +208,34 @@ Four jobs are generated.
 ### 3.8 Perform Workflows  
 
 These workflows will contain some generic "how was it for you" questions, but may also contain some important customisation steps.
-    ![deployhooli16](images/deployhooli16.JPG)   
+![deployhooli16](images/deployhooli16.JPG)   
   
- About your order workflows is motherhood. Just click thru and read the docco..
-    ![deployhooli17](images/deployhooli17.JPG)    
+About your order workflows is motherhood. Just click thru and read the docco..
+![deployhooli17](images/deployhooli17.JPG)    
 
- The User Interface is a bit asynchronous. Sometimes it takes a while to recognise a workflow step is complete.
+The User Interface is a bit asynchronous. Sometimes it takes a while to recognise a workflow step is complete.
   
- Finally we get to the real stuff. ( Mount ZFS and run IVP ).
- ![deployhooli18](images/deployhooli18.JPG)    
+Finally we get to the real stuff. ( Mount ZFS and run IVP ).
+![deployhooli18](images/deployhooli18.JPG)    
   
- The workflow helpfully generates JCL job to run hooli.
- ![deployhooli19](images/deployhooli19.JPG)    
+The workflow helpfully generates JCL job to run hooli.
+![deployhooli19](images/deployhooli19.JPG)    
   
- Save it to a PDS member. IBMUSER.CNTL(HOOLITST)
- ![deployhooli20](images/deployhooli20.JPG)    
+Save it to a PDS member. IBMUSER.CNTL(HOOLITST)
+![deployhooli20](images/deployhooli20.JPG)    
   
- Check it's there.
- ![deployhooli21](images/deployhooli21.JPG)    
+Check it's there.
+![deployhooli21](images/deployhooli21.JPG)    
   
-    Run the IVP Script from the workflow.
-    ![deployhooli22](images/deployhooli22.JPG)  
+Run the IVP Script from the workflow.
+![deployhooli22](images/deployhooli22.JPG)  
   
-    And verify that all the "Perform Workflows" are complete.
-    ![deployhooli23](images/deployhooli23.JPG)  
+And verify that all the "Perform Workflows" are complete.
+![deployhooli23](images/deployhooli23.JPG)  
   
 ### 3.9 Specify the properties for the target software instance.
 
-  Finally - confirm properties of Hooli PSI 
-    ![deployhooli24](images/deployhooli24.JPG)  
+Finally - confirm properties of Hooli PSI 
+![deployhooli24](images/deployhooli24.JPG)  
   
-  And we're done.
+And we're done.
