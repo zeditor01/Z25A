@@ -60,7 +60,7 @@ Fill in Page 1 details, including the <SERVER> XML
   
 ![hooli01](images/hooli01.JPG)
   
-Next ... Fill in Page 2 details, including the <CLIENT> XML and a Job Card
+Next ... Fill in Page 2 details, including the <CLIENT> XML and a Job Card. Be careful to update the USS directory to what you want.
   
 ![hooli02](images/hooli02.JPG)
 
@@ -84,10 +84,24 @@ You should submit the job via z/OSMF workload, so that it can track the end to e
 Monitor the progress through z/OSMF ( refresh button )
   
 ![hooli06](images/hooli06.JPG)    
+
+View the Job progress in SDSF
+
+![hooli07](images/hooli07.JPG)    
+
+And verify the download to ZFS via a terminal session
   
+![hooli08](images/hooli08.JPG)  
+
+And on Page 4 press Finish
+  
+![hooli09](images/hooli09.JPG)    
   
 
 ## 3. Invoke the z/OSMF dialog to deploy the hooli PSI
 
+Now that the sucker is downloaded to a local ZFS, we need to complete various workflows. This is basically a browser user interface to control the SMPE processes that you would otherwise do with JCL, TSO, SMPE and ISPF.
+  
+  
 
 
