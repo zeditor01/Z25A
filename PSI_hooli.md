@@ -62,18 +62,28 @@ Fill in Page 1 details, including the <SERVER> XML
   
 Next ... Fill in Page 2 details, including the <CLIENT> XML and a Job Card
   
-![hooli01](images/hooli02.JPG)
+![hooli02](images/hooli02.JPG)
 
 ```
 //IBMUSERJ JOB  (PSI),'SHOPZ JCL',CLASS=A,MSGCLASS=H,  
 //             NOTIFY=&SYSUID,MSGLEVEL=(1,1),REGION=0M   
 ```
   
+Next ... See the Download job generated in Page 3.
   
+![hooli03](images/hooli03.JPG)
   
+and verify it's location in ISPF  
   
+![hooli04](images/hooli04.JPG)  
+
+You should submit the job via z/OSMF workload, so that it can track the end to end progress.  
+
+![hooli05](images/hooli05.JPG)    
+
+Monitor the progress through z/OSMF ( refresh button )
   
-  
+![hooli06](images/hooli06.JPG)    
   
   
 
