@@ -6,6 +6,12 @@ This is the hooli test sample.
 2. Define the PSI and Download the Serverpac from ShopZ Download Server to ZFS
 3. Invoke the z/OSMF Deployment dialog to deploy the hooli PSI
 
+There is a series of videos covering the same material with detailed verbal explanation. 
+The notes below are a scrollable summary for my own benefit.
+
+https://mediacenter.ibm.com/playlist/dedicated/101043781/1_mzzf31vy/1_f1qhec1j
+
+
 ## 1. Order a PSI Serverpac. ( Classic CDC for IMS )
 
 Review the Download Package
@@ -110,17 +116,39 @@ Open the z/OSMF Deployments Page, and Start a New Deployment
 You will see a worklow of tasks to perform through this z/OSMF workflow
   
 ![deployhooli02](images/deployhooli02.JPG)    
-  
-
+ 
   	
 ### 3.1 Specify the properties for this deployment.
 
+Give the deployment a name
+  
+![deployhooli03](images/deployhooli03.JPG)      
+  
 ### 3.2 Select the software to deploy.
 
+Choose the PSI you want to deploy
+  
+![deployhooli04](images/deployhooli04.JPG)       
+  
 ### 3.3 Select the objective for this deployment.
 
-### 3.4 Configure this deployment.
+Tell it to create a new SMPE CSI (or place the PSI in an existing zone)
+  
+![deployhooli05](images/deployhooli05.JPG)   
+  
+### 3.4 Check for Missing SYSMODs.
 
+Optionally check for missing SYSMODs
+  
+![deployhooli06](images/deployhooli06.JPG)   
+
+### 3.5 Configure this deployment.
+
+This is the SMPE stuff, all wrapped up in a browser dialog, which will be used to create a json file in the USS path. 
+This json file contains a structured specification of all the steps, the DDDEFs the volumes or storage groups etc...  
+  
+![deployhooli07](images/deployhooli07.JPG)     
+  
 ### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
   
