@@ -100,10 +100,33 @@ And on Page 4 press Finish
 
 ## 3. Invoke the z/OSMF dialog to deploy the hooli PSI
 
-Now that the sucker is downloaded to a local ZFS, we need to complete various workflows. This is basically a browser user interface to control the SMPE processes that you would otherwise do with JCL, TSO, SMPE and ISPF.
+Now that the sucker is downloaded to a local ZFS, we need to complete various workflows. 
+This is basically a browser user interface to control the SMPE processes that you would otherwise do with JCL, TSO, SMPE and ISPF.
   
+Open the z/OSMF Deployments Page, and Start a New Deployment
   
+![deployhooli01](images/deployhooli01.JPG)     
+
+You will see a worklow of tasks to perform through this z/OSMF workflow
   
+![deployhooli02](images/deployhooli02.JPG)    
   
 
+  	
+### 3.1 Specify the properties for this deployment.
+
+### 3.2 Select the software to deploy.
+
+### 3.3 Select the objective for this deployment.
+
+### 3.4 Configure this deployment.
+
+### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
+
+  
+#### 3.6 View the deployment summary.
+
+### 3.7 Submit deployment jobs.
+
+### 3.8 Specify the properties for the target software instance.
 
