@@ -60,3 +60,17 @@ Software Requirements
 * IBM z/OS Management Facility (z/OSMF) (version is same as z/OS version). For information, see the z/OSMF documentation.
 * IBM Resource Access Control Facility (RACF®) or another equivalent external security manager that supports z/OS system authorization facility (SAF) interface.
 * Refer to the following table for the required Zowe version for each PTF. ( zowe v1.25 for UMS )
+
+### z/OSMF Pre-Req
+
+already deployed in ADCD.
+Upgrade to highest level zowe V1.
+Run report and order all maint for CSI zone ZWE100
+
+### ICSF + TKDS Pre-Req
+
+https://www.ibm.com/docs/en/zos/2.5.0?topic=tkds-steps-create
+
+then update CSFPRM00 to add a TKDS line, like the CKDS and PKDS ones, then recycle CSF
+
+
