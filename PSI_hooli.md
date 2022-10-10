@@ -3,8 +3,8 @@
 This is the hooli test sample.
 
 1. Order the PSI Serverpac
-2. Download the Serverpac to ZFS
-3. Invoke the z/OSMF dialog to deploy the hooli PSI
+2. Define the PSI and Download the Serverpac from ShopZ Download Server to ZFS
+3. Invoke the z/OSMF Deployment dialog to deploy the hooli PSI
 
 ## 1. Order a PSI Serverpac. ( Classic CDC for IMS )
 
@@ -46,7 +46,7 @@ Server XML box.
 ```
 
 
-## 2. Download the Serverpac to ZFS 
+## 2. Define the PSI and Download the Serverpac from ShopZ Download Server to ZFS 
 
 Open z/OSMF, and open Software Configuration.
 
