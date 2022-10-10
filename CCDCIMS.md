@@ -138,5 +138,36 @@ The Post Deploy Workflow is important for the product to work.
 
 ![ccdc11](images/ccdc11.JPG)
 
+Option to Read variables from a properties file of a previous installation ( or not ).
+
+![ccdc12](images/ccdc12.JPG)
+
+RACF Job doing a lot of stuff that I don't understand.
+
+![ccdc13](images/ccdc13.JPG)
+
+Runs fine, RC00, with lots of IBMUSER already has this power informational messages.
+
+![ccdc14](images/ccdc14.JPG)
+
+Job to update a subsystem PARMLIB.
+
+![ccdc15](images/ccdc15.JPG) 
+
+Job to mount the filesystems for MQ.
+
+![ccdc16](images/ccdc16.JPG)
+
+Job to Update the new SMPE DDDEFs.
+
+![ccdc17](images/ccdc17.JPG)
+
+Job to Relink load modeules with CALLLIBs.
+
+![ccdc18](images/ccdc18.JPG)
+
+
+
+
 
 
