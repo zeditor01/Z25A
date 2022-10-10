@@ -93,12 +93,27 @@ ZFS File Systems
 ![ccdc04](images/ccdc04.JPG)
 
 
-
 Job Settings for the deployment jobs:
 
 ```
 IBMUSER.DM.D221010.T164457.CNTL
 ```
 
+Now, Submit the Jobs, one by one, through the z/OSMF user interface.
+
+![ccdc05](images/ccdc05.JPG)
+
+Three jobs are generated.
+* IZUD01UZ	Unzip Data Sets: Run This
+* IZUD02RN	Rename Data Sets: Run This
+* IZUD03UC	Update CSI Data Sets: Run This  
+
+The Unzip job produces this outcome.
+
+![ccdc06](images/ccdc06.JPG)
+
+The rename job produces this outcome.
+
+![ccdc07](images/ccdc07.JPG)
 
 
