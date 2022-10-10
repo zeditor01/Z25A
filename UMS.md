@@ -39,3 +39,24 @@ drwxrwxrwx   8 OMVSKERN SYS1        8192 Oct 10 04:48 ..
 -rw-rw-rw-   1 OMVSKERN SYS1      282432 Oct 10 04:49 S0005.CB.ST251562.CPAC.PROD.PDF.pax.Z
 IBMUSER:/u/ibmuser/smpework/ums: >
 ```
+
+
+
+## Documentation 
+
+https://www.ibm.com/docs/en/umsfz/1.1.0?topic=110-installation
+
+UMS Architecture
+
+![ums_architecture](images/ums_architecture.JPG)
+
+Hardware Requirements
+* 18 GB memory
+* 2 GB disk
+
+Software Requirements
+* IBM z/OS 2.3 or later.
+* IBM z/OS Integrated Cryptographic Service Facility (ICSF) must be installed and configured with a token data set (TKDS) and the ICSF started task started, as described in the z/OS Cryptographic Services ICSF: System Programmer's Guide.
+* IBM z/OS Management Facility (z/OSMF) (version is same as z/OS version). For information, see the z/OSMF documentation.
+* IBM Resource Access Control Facility (RACF®) or another equivalent external security manager that supports z/OS system authorization facility (SAF) interface.
+* Refer to the following table for the required Zowe version for each PTF. ( zowe v1.25 for UMS )
