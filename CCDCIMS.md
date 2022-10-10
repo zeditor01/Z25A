@@ -73,3 +73,30 @@ Page 4. Finish
 
 ## PSI Deployment
 
+Follow the normal Deployment workflow
+  
+* welcome - press next
+* DLIBS - YES, we do want to copy the DLIBs
+* Model - Accept the Deployment Source as the model
+* SMPE Zones - Accept names from model MVST100 & MVSD100
+* Datasets - Names, volumes, storage groups : select ALL ... HLQ = CCDC ; Volume = USER0A
+* Catalogs - Accept CATALOG.Z25A.MASTER
+* Volumes and Storage Classes - default
+* Mount Points - /usr/lpp/mqm/V8R0M0	CCDC.OMVS.V8R0M0.MQROOT  (screenshot below)
+
+Datasets
+
+![ccdc03](images/ccdc03.jpg) 
+
+ZFS File Systems
+
+![ccdc04](images/ccdc04.jpg)
+
+Job Settings
+
+```
+IBMUSER.DM.D221010.T164457.CNTL
+```
+
+
+
