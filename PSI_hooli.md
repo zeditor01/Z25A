@@ -170,13 +170,38 @@ Specify the eventual mount point ( but you need to do that outside PSI )  /u/wal
 ### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
 I was prompted to provide the storage class of generated jobs (SCBASE). 
+
 ![deployhooli10](images/deployhooli10.JPG)  
 
-  
+Next, I am ready to ...   
   
 #### 3.6 View the deployment summary.
 
+remind myself what I specified
+  
+![deployhooli11](images/deployhooli11.JPG)  
+  
 ### 3.7 Submit deployment jobs.
 
+Four jobs are generated.
+* IZUD01RA	RACF Definitions: superflous for me : Override Complete
+* IZUD02UZ	Unzip Data Sets: Run This
+* IZUD03RN	Rename Data Sets: Run This
+* IZUD04UC	Update CSI Data Sets: Run This  
+
+  ![deployhooli12](images/deployhooli12.JPG)  
+  
+  These jobs are saved to IBMUSER.DM.D221010.T131937.CNTL
+  But run them from the z/OSMF workflow to keep track.
+  
+  The unzip job results in this
+  ![deployhooli13](images/deployhooli13.JPG)  
+  
+  The rename job results in this
+  ![deployhooli14](images/deployhooli14.JPG)  
+  
+  The CSI job just updates the CSI
+  
+  
 ### 3.8 Specify the properties for the target software instance.
 
