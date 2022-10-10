@@ -171,5 +171,93 @@ Job to Write Variables to a property file.
 ![ccdc19](images/ccdc19.JPG)
 
 
+## Class CDC for IMS Customisation 
+
+Edit CCDC.CAC.SCACSAMP(CECCUSC1) and submit to generate the Instance Libraries
+
+```
+//CECCUSC1 JOB (ACCOUNT),'CLASSIC JOB',MSGCLASS=X,CLASS=A,     
+//             MSGLEVEL=(1,1),NOTIFY=&SYSUID                   
+//*                                                            
+//PROCESS   OUTPUT  DEFAULT=YES,CLASS=*,JESDS=ALL,OUTDISP=HOLD 
+//*                                                            
+//GENSAMP PROC CAC='CCDC.CAC',    INSTALLED HIGH LEVEL QUALIFIER  
+//             DISKU='SYSALLDA',    DASD UNIT                     
+//             DISKVOL='USER0A',  DASD VOLSER                     
+//             ISPHLQ='ISP',    ISPF HLQ                          
+//             ISPLANG='ENU'   ISPF LANGUAGE                      
+//*                                                               
+//CACNOP    EXEC PGM=IEFBR14,                                    
+//             PARM='&CAC &DISKU &DISKVOL &ISPHLQ &ISPLANG'      
+//*                                                              
+//* -------------------------------------------------------------
+//*                                                              
+//*  EXECUTE THE USER SAMPLES ALLOCATION UTILITY                 
+//*                                                              
+//* -------------------------------------------------------------
+//*                                                              
+//CRTSAMP   EXEC PGM=IKJEFT1A,REGION=0M                          
+//STEPLIB   DD DISP=SHR,DSN=&ISPHLQ..SISPLOAD                    
+//          DD DISP=SHR,DSN=&ISPHLQ..SISPLPA                     
+//          DD DISP=SHR,DSN=&CAC..SCACLOAD                       
+//SYSOUT    DD SYSOUT=*                                          
+//SYSPRINT  DD SYSOUT=*                                          
+//SYSTSPRT  DD SYSOUT=*                                          
+//ISPFTTRC  DD SYSOUT=*,DCB=(LRECL=256,RECFM=VB)                 
+//ISPPROF   DD DSN=&&PROF,                                       
+//             DISP=(NEW,DELETE),                                
+//             UNIT=&DISKU,                                      
+//             SPACE=(CYL,(1,,10)),                              
+//             DCB=(LRECL=80,BLKSIZE=6160,RECFM=FB,DSORG=PO)     
+//*                                                              
+//SYSPROC   DD DISP=SHR,DSN=&CAC..SCACSAMP                       
+//ISPTABL   DD DISP=SHR,DSN=&CAC..SCACSAMP                       
+//ISPSLIB   DD DISP=SHR,DSN=&CAC..SCACSKEL                       
+//ISPTLIB   DD DISP=SHR,DSN=&ISPHLQ..SISPT&ISPLANG               
+//ISPPLIB   DD DISP=SHR,DSN=&ISPHLQ..SISPP&ISPLANG               
+//ISPMLIB   DD DISP=SHR,DSN=&ISPHLQ..SISPM&ISPLANG               
+//*                                                              
+//ISPWRK1   DD DISP=(NEW,DELETE),                                
+//             UNIT=&DISKU,                                      
+//             SPACE=(TRK,(15,15)),                              
+//             DCB=(LRECL=256,BLKSIZE=2560,RECFM=FB,DSORG=PS)    
+//*                                                              
+//ISPLOG    DD SYSOUT=*,                                         
+//             DCB=(RECFM=FBA,BLKSIZE=121,LRECL=121)             
+//ISPLIST   DD DUMMY,                                            
+//             DCB=(RECFM=FBA,BLKSIZE=121,LRECL=121)             
+//ISPLST1   DD DUMMY,                                            
+//             DCB=(RECFM=FBA,BLKSIZE=121,LRECL=121)             
+//ISPLST2   DD DUMMY,                                            
+//             DCB=(RECFM=FBA,BLKSIZE=121,LRECL=121)             
+//         PEND                                                  
+//*                                                              
+//GENSAMPE EXEC GENSAMP                                          
+//CRTSAMP.SYSTSIN  DD *                                          
+ PROFILE NOPREFIX  MSGID                                         
+                                                                 
+ ISPSTART CMD(%CACCUSX1                                         +
+      CACDUNIT=SYSALLDA                                         +
+  /*  CACDVOLM=<CACDVOLM>         UNCOMMENT IF NEEDED  */       +
+  /*  CACMGTCL=<CACMGTCL>         UNCOMMENT IF NEEDED  */       +
+  /*  CACSTGCL=<CACSTGCL>         UNCOMMENT IF NEEDED  */       +
+      CACINHLQ=CCDC.CAC                                         +
+      CACUSHLQ=CCDC.CAC.I1                                      +
+      ISPFHLQ=ISP                                               +
+      ISPFLANG=ENU                                              +
+      SERVERROLE=(CDC_IMS_SRC)                                  +
+ )                                                               
+/*                                                               
+```
+
+Edit CCDC.CAC.I1.USERSAMP(CACCUSPC) to define the environment
+
+Edit CCDC.CAC.I1.USERSAMP(CACCUSC2) and submit to generate the samples
+
+
+### Currently failing on REXX
+
+
+
 
 
