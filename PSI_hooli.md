@@ -167,7 +167,7 @@ Select all datasets and modify the desired HLQ and the desired volume or storage
 Specify the eventual mount point ( but you need to do that outside PSI )  /u/wallen/hooli - HOOLI.ZFS  
 ![deployhooli09](images/deployhooli09.JPG)      
 
-### 3.5 Define the job settings. z/OSMF creates the deployment summary and jobs.
+### 3.6 Define the job settings. z/OSMF creates the deployment summary and jobs.
 
 I was prompted to provide the storage class of generated jobs (SCBASE). 
 
@@ -175,13 +175,13 @@ I was prompted to provide the storage class of generated jobs (SCBASE).
 
 Next, I am ready to ...   
   
-#### 3.6 View the deployment summary.
+#### 3.7 View the deployment summary.
 
 remind myself what I specified
   
 ![deployhooli11](images/deployhooli11.JPG)  
   
-### 3.7 Submit deployment jobs.
+### 3.8 Submit deployment jobs.
 
 Four jobs are generated.
 * IZUD01RA	RACF Definitions: superflous for me : Override Complete
@@ -205,7 +205,37 @@ Four jobs are generated.
   And the Deployment of datasets is complete.
   ![deployhooli15](images/deployhooli15.JPG)    
   
-  
-  
-### 3.8 Specify the properties for the target software instance.
+### 3.8 Perform Workflows  
 
+These workflows will contain some generic "how was it for you" questions, but may also contain some important customisation steps.
+    ![deployhooli16](images/deployhooli16.JPG)   
+  
+ About your order workflows is motherhood. Just click thru and read the docco..
+    ![deployhooli17](images/deployhooli17.JPG)    
+
+  The User Interface is a bit asynchronous. Sometimes it takes a while to recognise a workflow step is complete.
+  
+   Finally we get to the real stuff. ( Mount ZFS and run IVP ).
+    ![deployhooli18](images/deployhooli18.JPG)    
+  
+     The workflow helpfully generates JCL job to run hooli.
+    ![deployhooli19](images/deployhooli19.JPG)    
+  
+     Save it to a PDS member. IBMUSER.CNTL(HOOLITST)
+    ![deployhooli20](images/deployhooli20.JPG)    
+  
+    Check it's there.
+    ![deployhooli21](images/deployhooli21.JPG)    
+  
+    Run the IVP Script from the workflow.
+    ![deployhooli22](images/deployhooli22.JPG)  
+  
+    And verify that all the "Perform Workflows" are complete.
+    ![deployhooli23](images/deployhooli23.JPG)  
+  
+### 3.9 Specify the properties for the target software instance.
+
+  Finally - confirm properties of Hooli PSI 
+    ![deployhooli24](images/deployhooli24.JPG)  
+  
+  And we're done.
