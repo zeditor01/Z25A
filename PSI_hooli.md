@@ -56,6 +56,26 @@ Add from Download Server
 
 ![psi02](images/psi02.jpg)
 
+Fill in Page 1 details, including the <SERVER> XML
+  
+![hooli01](images/hooli01.jpg)
+  
+Next ... Fill in Page 2 details, including the <CLIENT> XML and a Job Card
+  
+![hooli01](images/hooli01.jpg)
+
+```
+//IBMUSERJ JOB  (PSI),'SHOPZ JCL',CLASS=A,MSGCLASS=H,  
+//             NOTIFY=&SYSUID,MSGLEVEL=(1,1),REGION=0M   
+```
+  
+  
+  
+  
+  
+  
+  
+  
 
 ## 3. Invoke the z/OSMF dialog to deploy the hooli PSI
 
