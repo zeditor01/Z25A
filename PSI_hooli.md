@@ -58,11 +58,11 @@ Add from Download Server
 
 Fill in Page 1 details, including the <SERVER> XML
   
-![hooli01](images/hooli01.jpg)
+![hooli01](images/hooli01.JPG)
   
 Next ... Fill in Page 2 details, including the <CLIENT> XML and a Job Card
   
-![hooli01](images/hooli02.jpg)
+![hooli01](images/hooli02.JPG)
 
 ```
 //IBMUSERJ JOB  (PSI),'SHOPZ JCL',CLASS=A,MSGCLASS=H,  
