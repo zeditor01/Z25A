@@ -1,6 +1,4 @@
-# AI Libraries
-
-OA62901 OA62902 OA62903 OA62728 PH45672 PH44479 PH46862 
+# AI Libraries 
 
 z/OS V2.5
 * OA62901 zDNN  (Deep Neural Network library) 
@@ -14,6 +12,7 @@ SMPE Query these APARs for MVS.GLOBAL.CSI
 Run Report for MVS.GLOBAL.CSI
 
 Order APARs with report from ShopZ
+OA62901 OA62902 OA62903 OA62728 PH45672 PH44479 PH46862
 
 ```
   <SERVER                                                                       
@@ -33,6 +32,7 @@ Order APARs with report from ShopZ
   IBMUSER.CNTL(AILIBDWN)
   
   Read Job output to get list of PTFs
+  UJ08004 UJ08444 UJ08448 UI80106 UI80156 UI80826 UJ08371 UJ08381
   
   Run Apply.
   
