@@ -32,4 +32,33 @@ Order APARs with report from ShopZ
   
   IBMUSER.CNTL(AILIBDWN)
   
+  Read Job output to get list of PTFs
+  
+  Run Apply.
+  
+  ```
+  //IBMUSERJ JOB  (PTF),'DOWNLOAD PTF',CLASS=A,MSGCLASS=H,         
+//             NOTIFY=&SYSUID,MSGLEVEL=(1,1),REGION=0M           
+//* APPLY OF UI79663 TO ENABLE PSI INSTALL CCDC IMS              
+//RECNTS   EXEC PGM=GIMSMP,REGION=0M,                            
+//         PARM='CSI=MVS.GLOBAL.CSI'                             
+//SMPOUT   DD SYSOUT=*                                           
+//SMPLOG   DD SYSOUT=*                                           
+//SMPNTS   DD PATH='/u/ibmuser/smpework/ailib'                   
+//*SMPJHOME DD PATH='/usr/lpp/java/J8.0/',PATHDISP=KEEP          
+//SYSUT1   DD UNIT=SYSDA,SPACE=(CYL,(380,760)),DSNTYPE=LARGE,    
+//            STORCLAS=BIGSMS                                    
+//SYSUT2   DD UNIT=SYSDA,SPACE=(3120,(380,760))                  
+//SYSUT3   DD UNIT=SYSDA,SPACE=(3120,(380,760))                  
+//SYSUT4   DD UNIT=SYSDA,SPACE=(3120,(380,760))                  
+//*SMPHOLD  DD DISP=SHR,DSN=ADCDMST.HOLDDATA.TXT                 
+//SYSPRINT DD SYSOUT=*                                           
+//SMPCNTL  DD *                                                  
+ SET BDY(MVST  ).                                                
+ APPLY   S(                                                      
+ UJ08004 UJ08444 UJ08448 UI80106 UI80156 UI80826 UJ08371 UJ08381 
+ )  CHECK GROUPEXTEND BYPASS(HOLDSYS)                            
+ .                                                               
+/*                                                               
+```
   
