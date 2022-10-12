@@ -16,16 +16,16 @@ Server XML box.
                                                                         
 <SERVER                                                                 
   host="deliverycb-mul.dhe.ibm.com"                                     
-  user="P3m22256"                                                       
-  pw="C026499034q657q"                                                  
+  user="P662p007"                                                       
+  pw="k6321212q47798D"                                                  
   >                                                                     
   <PACKAGE                                                              
-      file="2022092900019/PROD/content/GIMPAF.XML"                      
-      hash="37337515FD94F9EA82658B6757DA8E129E55B60F"                   
-      id="ST251561.content"                                             
+      file="2022101100016/PROD/content/GIMPAF.XML"                      
+      hash="B464A6FF704B1718E703C28DCD3ADFFDD5E14214"                   
+      id="ST251603.content"                                             
    >                                                                    
   </PACKAGE>                                                            
-</SERVER>    
+</SERVER>          
 ```
 
 Open z/OSMF, and open Software Configuration.
