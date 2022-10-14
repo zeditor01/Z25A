@@ -250,12 +250,163 @@ Edit CCDC.CAC.SCACSAMP(CECCUSC1) and submit to generate the Instance Libraries
 /*                                                               
 ```
 
-Edit CCDC.CAC.I1.USERSAMP(CACCUSPC) to define the environment
-
-Edit CCDC.CAC.I1.USERSAMP(CACCUSC2) and submit to generate the samples
 
 
-### Currently failing on REXX
+
+### Failed on REXX
+debugged with Gregg and Deepak
+compiled versions of CACCUSX1, X2, X3 & X4 were corrupt.
+deployed interpretative versions - same error.
+Solution was to Add CACCUCX4 to the end of the code for X1 & X2.
+
+## Remainder of Customisation and Instance IVP
+
+
+
+IMSINHLQ="DFSF10"
+Notfn Port 5003
+DRA = IBMUSER
+DRA Suffix 00
+
+CDCMQHLQ="CSQ920"
+CDCMQMGR="CSQ9"  
+CDCBKMKQ="CCDC.BOOKMARK"
+CDCSUBLQ="CCDC.PUBCSV"  
+CCDC.PUBBINASIS 
+
+
+
+APF Authorise CCDC.CAC.SCACLOAD
+
+Port 9087
+
+CECCUCS1
+
+CECCUSPC
+CECCUSC2 - generate samples
+
+
+CCDC.CAC.I1.USERSAMP(CECCDSLS)
+Define DASD only log streams
+
+
+CCDC.CAC.I1.USERSAMP(CECCRZCT)
+Create Catalog ZFS
+CCDC.CAC.I1.ZFS
+
+mkdir /opt/IBM/isclassic113/catalog
+
+Temporary mount
+mount -f CCDC.CAC.I1.ZFS /opt/IBM/isclassic113/catalog
+
+ADCD.Z25A.PARMLIB(BPXPRMDB)
+===
+MOUNT    FILESYSTEM('CCDC.CAC.I1.ZFS')              
+         TYPE(ZFS)                                  
+         MODE(RDWR)                                 
+         MOUNTPOINT('/opt/IBM/isclassic113/catalog')
+		 
+		 
+CCDC.CAC.I1.USERSAMP(CECCDCFG)
+Configuration Files 
+
+
+CCDC.CAC.I1.USERSAMP(CECCDCAT)
+Classic Catalog 
+
+
+CCDC.CAC.I1.USERSAMP(CECCDSUB)
+Replication Mapping Dataset
+
+
+
+CCDC.CAC.I1.USERSAMP(CECPBKLQ) 
+Create Boommark Queue
+
+!!!!
+DEFINE QL(CCDC.BOOKMARK) +                                 
+  DEFPSIST(YES) GET(ENABLED) INDXTYPE(MSGID) PUT(ENABLED) +
+  DEFSOPT(SHARED) SHARE                                    
+
+CSQ9016E %CSQ9 ' DEFINE' command request not authorized
+CSQ9023E %CSQ9 CSQ9SCND 'DEFINE QL' ABNORMAL COMPLETION
+
+
+RDEFINE MQADMIN CSQ9.** OWNER(IBMUSER) UACC(NONE) 
+PERMIT CSQ9.** CLASS(MQADMIN) ID(IBMUSER) ACCESS(ALTER) 
+SETROPTS REFRESH GENERIC(MQADMIN)
+SETROPTS REFRESH RACLIST(MQADMIN) 
+
+
+Andrew Said :
+rdef mqadmin CSQ9.NO.SUBSYS.SECURITY
+/%CSQ9 REFRESH SECURITY
+
+
+Start Classic CDC : CCDC.CAC.I1.USERSAMP(CECCDSRC)
+S047 - APF Not AUthorised 
+D PROG,APF 
+
+//STEPLIB  DD DISP=SHR,DSN=&CAC..SCACLOAD                 
+//         DD DISP=SHR,DSN=&MQS..SCSQANLE                 
+//         DD DISP=SHR,DSN=&MQS..SCSQAUTH                 
+//         DD DISP=SHR,DSN=&IMS..SDFSRESL                 
+
+IPLwith PARM AL 
+
+
+Assemble the DRA Startup Module
+IBMUSER.CCDCIMS(ASMBLDRA)
+
+Update DRA Startup Module 
+DRATABLESUFFIX=1 
+DRAUSER=IBMUSER 
+
+
+Copy CCDC.CAC.SCACLOAD(DFSFLGX0) to DFSF10.SDFSRESL 
+Copy CCDC.CAC.SCACLOAD(DFSPPUE0) to DFSF10.SDFSRESL 
+
+
+
+Edit CCDC.CAC.I1.USERSAMP(CECE1OPT)
+IP=192.168.1.191
+Port=5003 
+
+
+Assemble the Notification Module
+IBMUSER.CCDCIMS(ASMNOTFN)
+
+
+Augment the Database
+DFSF10.SDFSISRC(DI21PART)
+Add EXIT  clause to 3 segments.
+ 
+ACBGEN 
+IBMUSER.CCDCIMS(DBDGEN)
+R 3,/CHE DUMPQ.
+ 
+
+
+Windows - Install Access Server ( cdcadmin / C0caC0la ) port 10101 , no LDAP
+Windows - Install Management Console , no LDAP 
+
+
+Y IPL.
+Y Wait for IMS Up.
+Y Start CCDCIMS, View SDSF Output. Connect to DRA
+Y Connect from CDA Console.
+Y Connect from CDA Explorer.
+Y Define STOKSTAT and STANINFO as Query, Update & Capture.   !!! ALTER FAIL - NO CDC in CDA, SYNTAX in IMS !!!
+Y Deploy DDL.
+Y Test Query.
+Y Define Subscription to CCDC.PUBCSV
+Y Test CDC.
+Y View CSV Record in MQ Explorer
+Create New Copybook for PUBBINASIS.
+Define New IMS Table in CDA.
+Query.
+Create Subscription to CCDC.PUBBINASIS
+Test CDC, View in MQ Explorer. 
 
 
 
