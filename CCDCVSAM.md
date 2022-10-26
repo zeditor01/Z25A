@@ -107,7 +107,7 @@ IBMUSER.DM.D221026.T171613.CNTL
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
 
-![cdcv_jobs](images/cdcv_jobs.JPG)
+![cdcv_jobs](images/cdcv_jobs.jpg)
 
 Four jobs are generated.
 * IZUD01RA  un-necessary RACF controls - override complete
