@@ -107,7 +107,7 @@ IBMUSER.DM.D221026.T171613.CNTL
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
 
-![cdcv_jobs](images/cdcv_jobs.JPG)
+![cdcv_jobs](images/cdcv_jobs.jpg)
 
 Four jobs are generated.
 * IZUD01RA  un-necessary RACF controls - override complete
@@ -117,31 +117,28 @@ Four jobs are generated.
 
 The Unzip job produces this outcome.
 
-![cdcv0606](images/cdcv06.JPG)
+![cdcv06](images/cdcv06.jpg)
 
 The rename job produces this outcome.
 
-![ccdc07](images/ccdc07.JPG)
+![cdcv07](images/cdcv07.jpg)
 
 And the CSI Job just updates the information in the CSI zones to reflect what has been done.
 The deployment jobs should now all show as complete.
 
-![cdcv08](images/cdcv08.JPG)
+![cdcv08](images/cdcv08.jpg)
 
 
 ## Perform Post-Install Workflows
 
 There are two workflows to review.
 
-![ccdc09](images/ccdc09.JPG)
+![cdcv09](images/cdcv09.jpg)
 
 
 The "Your Order" Workflow is motherhood and apple pie. Just click yes, yes, yes
 
-
-![ccdc10](images/ccdc10.JPG)
-
-The Post Deploy Workflow is important for the product to work.
+The "Post Deploy" Workflow is important for the product to work.
 
 ![ccdc11](images/ccdc11.JPG)
 
