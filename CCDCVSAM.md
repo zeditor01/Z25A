@@ -133,15 +133,12 @@ The deployment jobs should now all show as complete.
 
 There are two workflows to review.
 
-![ccdc09](images/ccdc09.JPG)
+![cdcv09](images/cdcv09.jpg)
 
 
 The "Your Order" Workflow is motherhood and apple pie. Just click yes, yes, yes
 
-
-![ccdc10](images/ccdc10.JPG)
-
-The Post Deploy Workflow is important for the product to work.
+The "Post Deploy" Workflow is important for the product to work.
 
 ![ccdc11](images/ccdc11.JPG)
 
