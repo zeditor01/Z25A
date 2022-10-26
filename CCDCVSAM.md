@@ -140,39 +140,36 @@ The "Your Order" Workflow is motherhood and apple pie. Just click yes, yes, yes
 
 The "Post Deploy" Workflow is important for the product to work.
 
-![ccdc11](images/ccdc11.JPG)
+![cdcv11](images/cdcv11.jpg)
 
 Option to Read variables from a properties file of a previous installation ( or not ).
-
-![ccdc12](images/ccdc12.JPG)
+Chose NOT to read properties
 
 RACF Job doing a lot of stuff that I don't understand.
 
-![ccdc13](images/ccdc13.JPG)
-
 Runs fine, RC00, with lots of IBMUSER already has this power informational messages.
 
-![ccdc14](images/ccdc14.JPG)
+![cdcv13](images/cdcv13.jpg)
 
 Job to update a subsystem PARMLIB.
 
-![ccdc15](images/ccdc15.JPG) 
+![cdcv15](images/cdcv15.jpg) 
 
 Job to mount the filesystems for MQ.
 
-![ccdc16](images/ccdc16.JPG)
+![cdcv16](images/cdcv16.jpg)
 
 Job to Update the new SMPE DDDEFs.
 
-![ccdc17](images/ccdc17.JPG)
+![cdcv17](images/cdcv17.jpg)
 
 Job to Relink load modeules with CALLLIBs.
 
-![ccdc18](images/ccdc18.JPG)
+![cdcv18](images/cdcv18.jpg)
 
 Job to Write Variables to a property file.
 
-![ccdc19](images/ccdc19.JPG)
+![cdcv19](images/cdcv19.jpg)
 
 
 
