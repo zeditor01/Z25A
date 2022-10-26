@@ -92,11 +92,11 @@ Follow the normal Deployment workflow
 
 Datasets
 
-![cdcv_datasets](images/cdcv_datasets.JPG) 
+![cdcv_datasets](images/cdcv_datasets.jpg) 
 
 ZFS File Systems
 
-![cdcv_zfs](images/cdcv_zfs.JPG)
+![cdcv_zfs](images/cdcv_zfs.jpg)
 
 
 Job Settings for the deployment jobs:
