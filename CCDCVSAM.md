@@ -25,8 +25,7 @@ Server XML box.
       id="ST251603.content"                                             
    >                                                                    
   </PACKAGE>                                                            
-</SERVER>          
-```
+</SERVER>                                                               ```
 
 Open z/OSMF, and open Software Configuration.
 
@@ -40,7 +39,7 @@ Page 1
 * name = CCDCVSAM 
 * SERVER = paste XML
 * System = S0W1
-* USS Directory = /u/ibmuser/smpework/ccdcvsam
+* USS Directory = /u/ibmuser/smpework/cdcv
 
 Page 2. Accept previous defaults ( CLIENT XML and JOB Card ) 
 
