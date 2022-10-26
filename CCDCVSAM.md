@@ -92,17 +92,17 @@ Follow the normal Deployment workflow
 
 Datasets
 
-![ccdc03](images/ccdc03.JPG) 
+![cdcv_datasets](images/cdcv_datasets.JPG) 
 
 ZFS File Systems
 
-![ccdc04](images/ccdc04.JPG)
+![cdcv_zfs](images/cdcv_zfs.JPG)
 
 
 Job Settings for the deployment jobs:
 
 ```
-IBMUSER.DM.D221010.T164457.CNTL
+IBMUSER.DM.D221026.T171613.CNTL
 ```
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
