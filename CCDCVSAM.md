@@ -92,11 +92,11 @@ Follow the normal Deployment workflow
 
 Datasets
 
-![cdcv_datasets](images/cdcv_datasets.JPG) 
+![cdcv_datasets](images/cdcv_datasets.jpg) 
 
 ZFS File Systems
 
-![cdcv_zfs](images/cdcv_zfs.JPG)
+![cdcv_zfs](images/cdcv_zfs.jpg)
 
 
 Job Settings for the deployment jobs:
@@ -107,16 +107,17 @@ IBMUSER.DM.D221026.T171613.CNTL
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
 
-![ccdc05](images/ccdc05.JPG)
+![cdcv_jobs](images/cdcv_jobs.JPG)
 
-Three jobs are generated.
-* IZUD01UZ	Unzip Data Sets: Run This
-* IZUD02RN	Rename Data Sets: Run This
-* IZUD03UC	Update CSI Data Sets: Run This  
+Four jobs are generated.
+* IZUD01RA  un-necessary RACF controls - override complete
+* IZUD02UZ	Unzip Data Sets: Run This
+* IZUD03RN	Rename Data Sets: Run This
+* IZUD04UC	Update CSI Data Sets: Run This  
 
 The Unzip job produces this outcome.
 
-![ccdc06](images/ccdc06.JPG)
+![cdcv0606](images/cdcv06.JPG)
 
 The rename job produces this outcome.
 
@@ -125,7 +126,7 @@ The rename job produces this outcome.
 And the CSI Job just updates the information in the CSI zones to reflect what has been done.
 The deployment jobs should now all show as complete.
 
-![ccdc08](images/ccdc08.JPG)
+![cdcv08](images/cdcv08.JPG)
 
 
 ## Perform Post-Install Workflows
