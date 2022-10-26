@@ -16,16 +16,16 @@ Server XML box.
                                                                         
 <SERVER                                                                 
   host="deliverycb-mul.dhe.ibm.com"                                     
-  user="P3m22256"                                                       
-  pw="C026499034q657q"                                                  
+  user="P662p007"                                                       
+  pw="k6321212q47798D"                                                  
   >                                                                     
   <PACKAGE                                                              
-      file="2022092900019/PROD/content/GIMPAF.XML"                      
-      hash="37337515FD94F9EA82658B6757DA8E129E55B60F"                   
-      id="ST251561.content"                                             
+      file="2022101100016/PROD/content/GIMPAF.XML"                      
+      hash="B464A6FF704B1718E703C28DCD3ADFFDD5E14214"                   
+      id="ST251603.content"                                             
    >                                                                    
   </PACKAGE>                                                            
-</SERVER>    
+</SERVER>          
 ```
 
 Open z/OSMF, and open Software Configuration.
@@ -40,7 +40,7 @@ Page 1
 * name = CCDCVSAM 
 * SERVER = paste XML
 * System = S0W1
-* USS Directory = /u/ibmuser/smpework/ccdcvsam
+* USS Directory = /u/ibmuser/smpework/CCDCVSAM ( smpework must be mounted ; CCDCVSAM will be created automatically )
 
 Page 2. Accept previous defaults ( CLIENT XML and JOB Card ) 
 
@@ -48,27 +48,25 @@ Submit Job
 
 Watch the smpework ZFS fill up.
 
+
 ```
-IBMUSER:/u/ibmuser/smpework/ccdcvsam: >ls -al
-total 1125104
-drwxrwxr-x   2 OMVSKERN SYS1        8192 Oct 10 03:53 .
-drwxrwxrwx   7 OMVSKERN SYS1        8192 Oct 10 03:21 ..
--rw-rw-rw-   1 OMVSKERN SYS1         405 Oct 10 03:22 CPYRIGHT
--rw-rw-rw-   1 OMVSKERN SYS1       72160 Oct 10 03:22 GIMPAF.XML
--rw-rw-rw-   1 OMVSKERN SYS1        5040 Oct 10 03:53 GIMPAF.XSL
--rw-rw-rw-   1 OMVSKERN SYS1      134013 Oct 10 03:22 IZUD00DF.json
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:22 S0003.CB.ST251561.CAC.ACACBASE.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:22 S0004.CB.ST251561.CAC.ACACCONF.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1     8870400 Oct 10 03:22 S0005.CB.ST251561.CAC.ACACLOAD.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:22 S0006.CB.ST251561.CAC.ACACMAC.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1      387072 Oct 10 03:23 S0007.CB.ST251561.CAC.ACACMSGS.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1      774144 Oct 10 03:23 S0008.CB.ST251561.CAC.ACACSAMP.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:23 S0009.CB.ST251561.CAC.ACACSIDE.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       64512 Oct 10 03:23 S0010.CB.ST251561.CAC.ACACSKEL.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:23 S0011.CB.ST251561.CAC.SCACBASE.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:23 S0012.CB.ST251561.CAC.SCACCONF.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1     10644480 Oct 10 03:24 S0013.CB.ST251561.CAC.SCACLOAD.pax.Z
--rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 10 03:24 S0014.CB.ST251561.CAC.SCACMAC.pax.Z
+IBMUSER:/u/ibmuser/smpework/CCDCVSAM: >ls -al
+total 1125744
+drwxrwxr-x   2 OMVSKERN SYS1        8192 Oct 26 00:45 .
+drwxrwxrwx   8 OMVSKERN SYS1        8192 Oct 26 00:25 ..
+-rw-rw-rw-   1 OMVSKERN SYS1         405 Oct 26 00:20 CPYRIGHT
+-rw-rw-rw-   1 OMVSKERN SYS1       72160 Oct 26 00:20 GIMPAF.XML
+-rw-rw-rw-   1 OMVSKERN SYS1        5040 Oct 26 00:45 GIMPAF.XSL
+-rw-rw-rw-   1 OMVSKERN SYS1      134016 Oct 26 00:20 IZUD00DF.json
+-rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 26 00:20 S0003.CB.ST251603.CAC.ACACBASE.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 26 00:20 S0004.CB.ST251603.CAC.ACACCONF.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1     8870400 Oct 26 00:21 S0005.CB.ST251603.CAC.ACACLOAD.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 26 00:21 S0006.CB.ST251603.CAC.ACACMAC.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1      387072 Oct 26 00:21 S0007.CB.ST251603.CAC.ACACMSGS.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1      774144 Oct 26 00:21 S0008.CB.ST251603.CAC.ACACSAMP.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1       32256 Oct 26 00:21 S0009.CB.ST251603.CAC.ACACSIDE.pax.Z
+-rw-rw-rw-   1 OMVSKERN SYS1       64512 Oct 26 00:21 S0010.CB.ST251603.CAC.ACACSKEL.pax.Z
+.... etc...
 ```
 
 When Download finishes RC00
@@ -82,27 +80,29 @@ Page 4. Finish
 Follow the normal Deployment workflow
   
 * welcome - press next
+* give the deployment a name (CCDCVSAM)
+* select the PSI source (CCDCVSAM)
 * DLIBS - YES, we do want to copy the DLIBs
 * Model - Accept the Deployment Source as the model
 * SMPE Zones - Accept names from model MVST100 & MVSD100
 * Datasets - Names, volumes, storage groups : select ALL ... HLQ = CCDC ; Volume = USER0A
 * Catalogs - Accept CATALOG.Z25A.MASTER
 * Volumes and Storage Classes - default
-* Mount Points - /usr/lpp/mqm/V8R0M0	CCDC.OMVS.V8R0M0.MQROOT  (screenshot below)
+* Mount Points - /usr/lpp/mqm/V8R0M0	CDCV.OMVS.V8R0M0.MQROOT  (screenshot below)
 
 Datasets
 
-![ccdc03](images/ccdc03.JPG) 
+![cdcv_datasets](images/cdcv_datasets.JPG) 
 
 ZFS File Systems
 
-![ccdc04](images/ccdc04.JPG)
+![cdcv_zfs](images/cdcv_zfs.JPG)
 
 
 Job Settings for the deployment jobs:
 
 ```
-IBMUSER.DM.D221010.T164457.CNTL
+IBMUSER.DM.D221026.T171613.CNTL
 ```
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
