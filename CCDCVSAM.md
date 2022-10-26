@@ -107,12 +107,13 @@ IBMUSER.DM.D221026.T171613.CNTL
 
 Now, Submit the Jobs, one by one, through the z/OSMF user interface.
 
-![ccdc05](images/ccdc05.JPG)
+![cdcv_jobs](images/cdcv_jobs.JPG)
 
-Three jobs are generated.
-* IZUD01UZ	Unzip Data Sets: Run This
-* IZUD02RN	Rename Data Sets: Run This
-* IZUD03UC	Update CSI Data Sets: Run This  
+Four jobs are generated.
+* IZUD01RA  un-necessary RACF controls - override complete
+* IZUD02UZ	Unzip Data Sets: Run This
+* IZUD03RN	Rename Data Sets: Run This
+* IZUD04UC	Update CSI Data Sets: Run This  
 
 The Unzip job produces this outcome.
 
