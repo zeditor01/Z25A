@@ -117,7 +117,7 @@ Four jobs are generated.
 
 The Unzip job produces this outcome.
 
-![ccdc06](images/ccdc06.JPG)
+![cdcv0606](images/cdcv06.JPG)
 
 The rename job produces this outcome.
 
@@ -126,7 +126,7 @@ The rename job produces this outcome.
 And the CSI Job just updates the information in the CSI zones to reflect what has been done.
 The deployment jobs should now all show as complete.
 
-![ccdc08](images/ccdc08.JPG)
+![cdcv08](images/cdcv08.JPG)
 
 
 ## Perform Post-Install Workflows
