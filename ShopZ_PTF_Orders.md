@@ -36,7 +36,7 @@ Check Results : PTF UI79663 not installed in the target zone
 
 ![csiquery02](images/csiquery02.jpg)
 
-
+ 
 ## 2. Run a Report 
 
 IBMUSER.CNTL(SMPRPT)
